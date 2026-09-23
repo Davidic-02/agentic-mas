@@ -1,0 +1,71 @@
+# A fourth agent. Note what is NOT in this repository: any change to the
+# coordinator. It finds this agent because the agent is labelled and
+# publishes a card, not because anyone told it to look.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: factcheck
+  labels:
+    app: agentic-mas
+    agent: factcheck
+    a2a.agent/enabled: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      agent: factcheck
+  template:
+    metadata:
+      labels:
+        app: agentic-mas
+        agent: factcheck
+        a2a.agent/enabled: "true"
+    spec:
+      containers:
+        - name: agent
+          image: agentic-mas:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8104
+          env:
+            - name: AGENT_NAME
+              value: "factcheck"
+            - name: AGENT_PORT
+              value: "8104"
+            - name: AGENT_HOST
+              value: "0.0.0.0"
+            - name: AGENT_BACKEND
+              value: "stub"
+            - name: AGENT_PUBLIC_URL
+              value: "http://factcheck:8104/"
+          readinessProbe:
+            httpGet:
+              path: /.well-known/agent-card.json
+              port: 8104
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /.well-known/agent-card.json
+              port: 8104
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests: { cpu: "50m", memory: "128Mi" }
+            limits:   { cpu: "500m", memory: "512Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: factcheck
+  labels:
+    app: agentic-mas
+    agent: factcheck
+    a2a.agent/enabled: "true"
+spec:
+  selector:
+    agent: factcheck
+  ports:
+    - port: 8104
+      targetPort: 8104

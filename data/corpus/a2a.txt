@@ -1,0 +1,9 @@
+Agent2Agent Protocol (A2A)
+
+A2A standardises the horizontal interface between agents. Where MCP connects
+an agent to its tools, A2A connects an agent to other agents, allowing
+delegation and collaboration between opaque, autonomous peers built on
+different frameworks.
+
+Agents advertise what they can do through a capability description, so a
+caller does not need to know how the callee was implemented internally.

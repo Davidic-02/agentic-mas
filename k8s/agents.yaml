@@ -1,0 +1,217 @@
+# Kubernetes manifests for the agent services.
+#
+# Two things here matter beyond "it runs".
+#
+# 1. The readiness probe fetches the agent's A2A card. An agent is "ready"
+#    when it can describe itself -- not merely when its process is up. That
+#    is the most meaningful health signal this system currently has, and it
+#    is still only a liveness question in disguise: the probe cannot tell
+#    whether the agent's *answers* are any good.
+#
+# 2. Every agent carries the label `a2a.agent/enabled: "true"`. Nothing uses
+#    it yet. It is the handle a coordinator will use to ask the cluster
+#    "which agents are running?" instead of reading a hardcoded list.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: research
+  labels:
+    app: agentic-mas
+    agent: research
+    a2a.agent/enabled: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      agent: research
+  template:
+    metadata:
+      labels:
+        app: agentic-mas
+        agent: research
+        a2a.agent/enabled: "true"
+    spec:
+      containers:
+        - name: agent
+          image: agentic-mas:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8101
+          env:
+            - name: AGENT_NAME
+              value: "research"
+            - name: AGENT_PORT
+              value: "8101"
+            - name: AGENT_HOST
+              value: "0.0.0.0"
+            - name: AGENT_BACKEND
+              value: "stub"
+            - name: AGENT_PUBLIC_URL
+              value: "http://research:8101/"
+          readinessProbe:
+            httpGet:
+              path: /.well-known/agent-card.json
+              port: 8101
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /.well-known/agent-card.json
+              port: 8101
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests: { cpu: "50m", memory: "128Mi" }
+            limits:   { cpu: "500m", memory: "512Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: research
+  labels:
+    app: agentic-mas
+    agent: research
+    a2a.agent/enabled: "true"
+spec:
+  selector:
+    agent: research
+  ports:
+    - port: 8101
+      targetPort: 8101
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: analysis
+  labels:
+    app: agentic-mas
+    agent: analysis
+    a2a.agent/enabled: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      agent: analysis
+  template:
+    metadata:
+      labels:
+        app: agentic-mas
+        agent: analysis
+        a2a.agent/enabled: "true"
+    spec:
+      containers:
+        - name: agent
+          image: agentic-mas:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8102
+          env:
+            - name: AGENT_NAME
+              value: "analysis"
+            - name: AGENT_PORT
+              value: "8102"
+            - name: AGENT_HOST
+              value: "0.0.0.0"
+            - name: AGENT_BACKEND
+              value: "stub"
+            - name: AGENT_PUBLIC_URL
+              value: "http://analysis:8102/"
+          readinessProbe:
+            httpGet:
+              path: /.well-known/agent-card.json
+              port: 8102
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /.well-known/agent-card.json
+              port: 8102
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests: { cpu: "50m", memory: "128Mi" }
+            limits:   { cpu: "500m", memory: "512Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: analysis
+  labels:
+    app: agentic-mas
+    agent: analysis
+    a2a.agent/enabled: "true"
+spec:
+  selector:
+    agent: analysis
+  ports:
+    - port: 8102
+      targetPort: 8102
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: writer
+  labels:
+    app: agentic-mas
+    agent: writer
+    a2a.agent/enabled: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      agent: writer
+  template:
+    metadata:
+      labels:
+        app: agentic-mas
+        agent: writer
+        a2a.agent/enabled: "true"
+    spec:
+      containers:
+        - name: agent
+          image: agentic-mas:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8103
+          env:
+            - name: AGENT_NAME
+              value: "writer"
+            - name: AGENT_PORT
+              value: "8103"
+            - name: AGENT_HOST
+              value: "0.0.0.0"
+            - name: AGENT_BACKEND
+              value: "stub"
+            - name: AGENT_PUBLIC_URL
+              value: "http://writer:8103/"
+          readinessProbe:
+            httpGet:
+              path: /.well-known/agent-card.json
+              port: 8103
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /.well-known/agent-card.json
+              port: 8103
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests: { cpu: "50m", memory: "128Mi" }
+            limits:   { cpu: "500m", memory: "512Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: writer
+  labels:
+    app: agentic-mas
+    agent: writer
+    a2a.agent/enabled: "true"
+spec:
+  selector:
+    agent: writer
+  ports:
+    - port: 8103
+      targetPort: 8103

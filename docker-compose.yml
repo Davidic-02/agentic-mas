@@ -1,0 +1,36 @@
+# Local multi-container run, before Kubernetes.
+#
+# Same three agents as phase 4, but each in its own container talking over a
+# Docker network instead of localhost. This is the step that proves the
+# agents do not care where their peers live.
+
+services:
+  research:
+    build: .
+    environment:
+      AGENT_NAME: research
+      AGENT_PORT: "8101"
+      AGENT_BACKEND: stub
+      AGENT_HOST: 0.0.0.0
+      AGENT_PUBLIC_URL: "http://research:8101/"
+    ports: ["8101:8101"]
+
+  analysis:
+    build: .
+    environment:
+      AGENT_NAME: analysis
+      AGENT_PORT: "8102"
+      AGENT_BACKEND: stub
+      AGENT_HOST: 0.0.0.0
+      AGENT_PUBLIC_URL: "http://analysis:8102/"
+    ports: ["8102:8102"]
+
+  writer:
+    build: .
+    environment:
+      AGENT_NAME: writer
+      AGENT_PORT: "8103"
+      AGENT_BACKEND: stub
+      AGENT_HOST: 0.0.0.0
+      AGENT_PUBLIC_URL: "http://writer:8103/"
+    ports: ["8103:8103"]

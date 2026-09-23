@@ -1,0 +1,10 @@
+Model Context Protocol (MCP)
+
+MCP standardises the vertical interface between an agent and the tools or
+data it uses. A host application connects through a client to an MCP server,
+which exposes three kinds of capability: Tools (callable functions with JSON
+Schema inputs and outputs), Resources (contextual data), and Prompts.
+
+Because the interface is standard, a tool written once can be consumed by any
+MCP-capable agent regardless of the framework that agent was built with.
+There are 3 capability kinds in total.

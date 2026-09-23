@@ -1,0 +1,14 @@
+# Direct dependencies only. Transitive ones (starlette, httpx, protobuf)
+# come in via a2a-sdk.
+anthropic>=1.8.0
+python-dotenv>=1.0.0
+
+# Open standards
+mcp>=2.2.0
+a2a-sdk>=1.1.5
+
+# HTTP server for the A2A agent services
+uvicorn>=0.53.0
+
+# Runtime discovery of deployed agents (phase 8)
+kubernetes>=36.0.0

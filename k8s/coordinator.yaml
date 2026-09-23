@@ -1,0 +1,57 @@
+# The coordinator, as a cluster workload.
+#
+# It needs to ask the API server which agents are running, which means it
+# needs permission to do so. The Role below is deliberately minimal: read
+# services, nothing else. An agentic system that can list its own peers
+# should not also be able to delete them.
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: agent-coordinator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: agent-discovery
+rules:
+  - apiGroups: [""]
+    resources: ["services"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: agent-coordinator-discovery
+subjects:
+  - kind: ServiceAccount
+    name: agent-coordinator
+roleRef:
+  kind: Role
+  name: agent-discovery
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: coordinator
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      serviceAccountName: agent-coordinator
+      restartPolicy: Never
+      containers:
+        - name: coordinator
+          image: agentic-mas:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: DISCOVERY
+              value: "kubernetes"
+            - name: AGENT_BACKEND
+              value: "stub"
+          command:
+            - python
+            - -m
+            - phase8_discovery.run
+            - "how many probe types does kubernetes have?"

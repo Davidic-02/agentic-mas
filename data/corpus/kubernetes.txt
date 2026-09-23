@@ -1,0 +1,10 @@
+Kubernetes health probes
+
+Kubernetes supports exactly 3 probe types: liveness, readiness and startup.
+A container may define at most one probe of each type. All three answer a
+process-level question -- is this container up and able to accept traffic.
+
+None of them can express whether a workload produced a correct result. For
+ordinary services that distinction rarely matters, because a service that
+returns the wrong answer is usually a bug rather than an expected mode of
+operation.

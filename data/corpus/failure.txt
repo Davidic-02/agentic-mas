@@ -1,0 +1,9 @@
+Failure modes in multi-agent systems
+
+Research on multi-agent LLM systems has catalogued 14 distinct failure modes,
+grouped into 3 categories: system design issues, inter-agent misalignment,
+and task verification failures.
+
+Task verification failures are notable because the system reports success.
+Every process stays healthy, every call returns, and the final answer is
+wrong. Conventional orchestration cannot observe this class of failure at all.
