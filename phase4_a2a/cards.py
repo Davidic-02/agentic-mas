@@ -48,7 +48,8 @@ SPECS = {
                 "Analysis and computation",
                 "Compare, compute over and draw conclusions from supplied "
                 "material.",
-                ["analysis", "reasoning", "consumes:findings", "produces:conclusions"],
+                ["analysis", "reasoning", "consumes:findings", "produces:conclusions",
+                 "satisfies:computation"],
             )
         ],
     },
@@ -63,7 +64,8 @@ SPECS = {
                 "Claim verification",
                 "Re-check supplied claims against the document corpus and "
                 "flag anything unsupported.",
-                ["verification", "consumes:findings", "produces:findings"],
+                ["verification", "consumes:findings", "produces:findings",
+                 "satisfies:verification"],
             )
         ],
     },
@@ -77,7 +79,7 @@ SPECS = {
                 "compose",
                 "Report writing",
                 "Synthesise supplied findings into a readable, cited answer.",
-                ["writing", "synthesis", "consumes:conclusions", "produces:report"],
+                ["writing", "synthesis", "consumes:findings", "produces:report"],
             )
         ],
     },

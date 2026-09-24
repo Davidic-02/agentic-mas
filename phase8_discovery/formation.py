@@ -28,11 +28,12 @@ Consequences that matter for the deployment
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, Iterable
 
 CONSUMES = "consumes:"
 PRODUCES = "produces:"
+SATISFIES = "satisfies:"
 
 START = "query"
 GOAL = "report"
@@ -40,11 +41,12 @@ GOAL = "report"
 
 @dataclass(frozen=True)
 class Capability:
-    """What one agent needs and what it yields."""
+    """What one agent needs, what it yields, and what needs it can meet."""
 
     agent: str
     consumes: frozenset[str]
     produces: frozenset[str]
+    satisfies: frozenset[str] = frozenset()
 
     def can_run_given(self, available: Iterable[str]) -> bool:
         """An agent can run once everything it consumes is on the table."""
@@ -66,14 +68,18 @@ class Capability:
 
 
 def read_capability(name: str, card: Any) -> Capability:
-    consumes, produces = set(), set()
+    consumes, produces, satisfies = set(), set(), set()
     for skill in getattr(card, "skills", []):
         for tag in skill.tags:
             if tag.startswith(CONSUMES):
                 consumes.add(tag[len(CONSUMES):])
             elif tag.startswith(PRODUCES):
                 produces.add(tag[len(PRODUCES):])
-    return Capability(name, frozenset(consumes), frozenset(produces))
+            elif tag.startswith(SATISFIES):
+                satisfies.add(tag[len(SATISFIES):])
+    return Capability(
+        name, frozenset(consumes), frozenset(produces), frozenset(satisfies)
+    )
 
 
 @dataclass
@@ -84,10 +90,16 @@ class Plan:
     produced: set[str]
     reached_goal: bool
     unreachable: set[str]
+    unmet: set[str] = field(default_factory=set)
 
     def describe(self) -> str:
         if self.reached_goal:
             return " -> ".join(self.team) if self.team else "(empty team)"
+        if self.unmet:
+            return (
+                "incomplete: no deployed agent satisfies "
+                f"{sorted(self.unmet)}, which this task requires"
+            )
         have = ", ".join(sorted(self.produced)) or "nothing"
         return (
             f"incomplete: {' -> '.join(self.team) or '(no agents usable)'}; "
@@ -137,3 +149,78 @@ def form_team(
         reached_goal=goal in available,
         unreachable=unreachable,
     )
+
+
+def form_team_targeted(
+    capabilities: list[Capability],
+    required: frozenset[str] = frozenset(),
+    *,
+    start: str = START,
+    goal: str = GOAL,
+) -> Plan:
+    """Formation that sees the task.
+
+    `required` is the set of requirement markers the task raised. An agent
+    earns its place only by being necessary to reach the goal or by
+    satisfying a marker -- being merely runnable is no longer enough, which
+    is the whole difference from `form_team`.
+
+    Two steps, deliberately separated:
+
+      1. **Who.** Breadth-first search for the smallest set of agents that
+         reaches the goal and covers every required marker. Breadth-first
+         gives the smallest set; expanding candidates in name order makes
+         the result reproducible.
+      2. **In what order.** Hand that set to `form_team`, which already
+         knows refiners must precede transformers of their type.
+
+    Separating them keeps the ordering rule in one place and lets the search
+    concern itself only with membership.
+    """
+    from collections import deque
+
+    required = frozenset(required)
+    by_name = {c.agent: c for c in capabilities}
+    ordered = sorted(capabilities, key=lambda c: c.agent)
+
+    queue = deque([(frozenset({start}), ())])
+    seen = {frozenset({start}): {()}}
+    chosen: tuple[str, ...] | None = None
+
+    while queue:
+        available, chain = queue.popleft()
+        covered = frozenset().union(*(by_name[a].satisfies for a in chain)) if chain else frozenset()
+
+        if goal in available and required <= covered:
+            chosen = chain
+            break
+
+        for cap in ordered:
+            if cap.agent in chain or not cap.can_run_given(available):
+                continue
+            nxt = available | cap.produces
+            key = frozenset(chain + (cap.agent,))
+            if key in seen.setdefault(nxt, set()):
+                continue
+            seen[nxt].add(key)
+            queue.append((nxt, chain + (cap.agent,)))
+
+    if chosen is None:
+        # No chain both reaches the goal and covers what the task needs.
+        # Returning a goal-reaching chain anyway would be worse than
+        # useless: it would answer an arithmetic question with a team that
+        # cannot do arithmetic, and report success. Say what is missing.
+        covered = frozenset().union(
+            *(c.satisfies for c in capabilities)
+        ) if capabilities else frozenset()
+        partial = form_team(capabilities, start=start, goal=goal)
+        return Plan(
+            team=[],
+            produced=partial.produced,
+            reached_goal=False,
+            unreachable={c.agent for c in capabilities},
+            unmet=set(required - covered),
+        )
+
+    # Step 2: order the chosen set with the existing refiner-first rule.
+    return form_team([by_name[a] for a in chosen], start=start, goal=goal)

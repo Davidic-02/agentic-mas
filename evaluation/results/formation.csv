@@ -1,0 +1,81 @@
+condition,scenario,task,team,team_size,completes,precision,recall,code_change_required,failure_mode,failure
+static,baseline,probe-count,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v1,baseline,probe-count,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v2,baseline,probe-count,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+targeted,baseline,probe-count,research -> writer,2,True,1.0,1.0,False,none,
+static,baseline,protocol-diff,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v1,baseline,protocol-diff,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v2,baseline,protocol-diff,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+targeted,baseline,protocol-diff,research -> writer,2,True,1.0,1.0,False,none,
+static,baseline,failure-average,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+derived-v1,baseline,failure-average,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+derived-v2,baseline,failure-average,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+targeted,baseline,failure-average,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+static,baseline,capability-product,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+derived-v1,baseline,capability-product,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+derived-v2,baseline,capability-product,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+targeted,baseline,capability-product,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+static,baseline,absent-fact,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v1,baseline,absent-fact,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v2,baseline,absent-fact,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+targeted,baseline,absent-fact,research -> writer,2,True,1.0,1.0,False,none,
+static,agent-added,probe-count,research -> analysis -> writer,3,True,0.667,1.0,True,none,
+derived-v1,agent-added,probe-count,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+derived-v2,agent-added,probe-count,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+targeted,agent-added,probe-count,research -> writer,2,True,1.0,1.0,False,none,
+static,agent-added,protocol-diff,research -> analysis -> writer,3,True,0.667,1.0,True,none,
+derived-v1,agent-added,protocol-diff,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+derived-v2,agent-added,protocol-diff,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+targeted,agent-added,protocol-diff,research -> writer,2,True,1.0,1.0,False,none,
+static,agent-added,failure-average,research -> analysis -> writer,3,True,1.0,1.0,True,none,
+derived-v1,agent-added,failure-average,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+derived-v2,agent-added,failure-average,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+targeted,agent-added,failure-average,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+static,agent-added,capability-product,research -> analysis -> writer,3,True,1.0,1.0,True,none,
+derived-v1,agent-added,capability-product,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+derived-v2,agent-added,capability-product,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+targeted,agent-added,capability-product,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+static,agent-added,absent-fact,research -> analysis -> writer,3,True,0.667,1.0,True,none,
+derived-v1,agent-added,absent-fact,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+derived-v2,agent-added,absent-fact,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+targeted,agent-added,absent-fact,research -> writer,2,True,1.0,1.0,False,none,
+static,analysis-removed,probe-count,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,probe-count,research,1,False,1.0,0.5,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,probe-count,research -> writer,2,True,1.0,1.0,False,none,
+targeted,analysis-removed,probe-count,research -> writer,2,True,1.0,1.0,False,none,
+static,analysis-removed,protocol-diff,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,protocol-diff,research,1,False,1.0,0.5,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,protocol-diff,research -> writer,2,True,1.0,1.0,False,none,
+targeted,analysis-removed,protocol-diff,research -> writer,2,True,1.0,1.0,False,none,
+static,analysis-removed,failure-average,research -> analysis -> writer,3,False,1.0,1.0,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,failure-average,research,1,False,1.0,0.333,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,failure-average,research -> writer,2,True,1.0,0.667,False,none,
+targeted,analysis-removed,failure-average,(none),0,False,0.0,0.0,False,reported,"incomplete: no deployed agent satisfies ['computation'], which this task requires"
+static,analysis-removed,capability-product,research -> analysis -> writer,3,False,1.0,1.0,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,capability-product,research,1,False,1.0,0.333,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,capability-product,research -> writer,2,True,1.0,0.667,False,none,
+targeted,analysis-removed,capability-product,(none),0,False,0.0,0.0,False,reported,"incomplete: no deployed agent satisfies ['computation'], which this task requires"
+static,analysis-removed,absent-fact,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,absent-fact,research,1,False,1.0,0.5,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,absent-fact,research -> writer,2,True,1.0,1.0,False,none,
+targeted,analysis-removed,absent-fact,research -> writer,2,True,1.0,1.0,False,none,
+static,research-removed,probe-count,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,probe-count,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,probe-count,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,probe-count,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,protocol-diff,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,protocol-diff,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,protocol-diff,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,protocol-diff,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,failure-average,research -> analysis -> writer,3,False,1.0,1.0,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,failure-average,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,failure-average,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,failure-average,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,capability-product,research -> analysis -> writer,3,False,1.0,1.0,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,capability-product,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,capability-product,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,capability-product,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,absent-fact,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,absent-fact,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,absent-fact,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,absent-fact,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'

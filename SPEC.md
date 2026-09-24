@@ -297,3 +297,57 @@ every agent correctly reported that the pod restart backoff limit is absent
 from the corpus, despite the underlying model almost certainly knowing the
 value from pretraining. The corpus-only instruction held across four agents
 and two protocol hops.
+
+---
+
+## 10. Task-aware formation, and its evaluation
+
+### The fix
+
+Agents declare `satisfies:<marker>` alongside their consumes/produces tags.
+A task is profiled (`phase8_discovery/requirements.py`) into the markers it
+raises. `form_team_targeted` searches breadth-first for the smallest agent
+set that both reaches `report` and covers those markers, then orders that
+set with the refiner-first rule already established. An agent earns a place
+by necessity or by satisfying a marker; being runnable is no longer enough.
+
+The writer's declaration was also loosened from `consumes:conclusions` to
+`consumes:findings`. The tight version forced `analysis` into every chain,
+which is what had masked task-independence.
+
+### Evaluation
+
+`evaluation/` holds the harness. Eighty trials: four conditions x four
+deployment scenarios x five tasks. Team formation involves no inference, so
+these are exact, not sampled. Ground truth (which agents each task needs)
+was fixed before any result was seen.
+
+| Condition | Precision | Recall | Team size | Source edits | Runtime failures |
+|---|---|---|---|---|---|
+| Static team | 0.800 | 1.000 | 3.00 | 15 | 10 |
+| Derived, as first measured | 0.700 | 1.000 | 3.50 | 0 | 0 |
+| Derived, looser declarations only | 0.800 | 0.956 | 3.00 | 0 | 0 |
+| **Targeted (task-aware)** | **1.000** | **1.000** | **2.31** | **0** | **0** |
+
+The two changes are held apart deliberately. Loosening declarations alone
+raises precision to 0.800 but drops recall to 0.956; task-awareness is what
+reaches 1.000 on both while cutting the mean team to 2.31 agents.
+
+### The result that matters
+
+Under `analysis-removed`, the looser-declaration condition completes 5 of 5
+tasks and the task-aware condition completes 3 of 5.
+
+The lower number is correct. The looser condition answers arithmetic
+questions with a team containing no arithmetic agent and reports success;
+the task-aware condition reports those two as impossible and names the
+missing capability. Completing fewer tasks is better behaviour when the
+alternative is failing quietly.
+
+### Limitation
+
+The profiler is a keyword heuristic. It keeps formation deterministic and
+exactly measurable, which is why it was chosen, but it will not generalise
+to unusually phrased tasks. A model-based profiler is the natural successor
+and would require a different evaluation design, since composition would
+cease to be exact and would have to be sampled.
