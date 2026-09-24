@@ -3,10 +3,22 @@ static,baseline,probe-count,research -> analysis -> writer,3,True,0.667,1.0,Fals
 derived-v1,baseline,probe-count,research -> analysis -> writer,3,True,0.667,1.0,False,none,
 derived-v2,baseline,probe-count,research -> analysis -> writer,3,True,0.667,1.0,False,none,
 targeted,baseline,probe-count,research -> writer,2,True,1.0,1.0,False,none,
+static,baseline,mcp-kinds,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v1,baseline,mcp-kinds,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v2,baseline,mcp-kinds,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+targeted,baseline,mcp-kinds,research -> writer,2,True,1.0,1.0,False,none,
+static,baseline,failure-count,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v1,baseline,failure-count,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v2,baseline,failure-count,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+targeted,baseline,failure-count,research -> writer,2,True,1.0,1.0,False,none,
 static,baseline,protocol-diff,research -> analysis -> writer,3,True,0.667,1.0,False,none,
 derived-v1,baseline,protocol-diff,research -> analysis -> writer,3,True,0.667,1.0,False,none,
 derived-v2,baseline,protocol-diff,research -> analysis -> writer,3,True,0.667,1.0,False,none,
 targeted,baseline,protocol-diff,research -> writer,2,True,1.0,1.0,False,none,
+static,baseline,protocol-layers,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v1,baseline,protocol-layers,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v2,baseline,protocol-layers,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+targeted,baseline,protocol-layers,research -> writer,2,True,1.0,1.0,False,none,
 static,baseline,failure-average,research -> analysis -> writer,3,True,1.0,1.0,False,none,
 derived-v1,baseline,failure-average,research -> analysis -> writer,3,True,1.0,1.0,False,none,
 derived-v2,baseline,failure-average,research -> analysis -> writer,3,True,1.0,1.0,False,none,
@@ -15,18 +27,54 @@ static,baseline,capability-product,research -> analysis -> writer,3,True,1.0,1.0
 derived-v1,baseline,capability-product,research -> analysis -> writer,3,True,1.0,1.0,False,none,
 derived-v2,baseline,capability-product,research -> analysis -> writer,3,True,1.0,1.0,False,none,
 targeted,baseline,capability-product,research -> analysis -> writer,3,True,1.0,1.0,False,none,
-static,baseline,absent-fact,research -> analysis -> writer,3,True,0.667,1.0,False,none,
-derived-v1,baseline,absent-fact,research -> analysis -> writer,3,True,0.667,1.0,False,none,
-derived-v2,baseline,absent-fact,research -> analysis -> writer,3,True,0.667,1.0,False,none,
-targeted,baseline,absent-fact,research -> writer,2,True,1.0,1.0,False,none,
+static,baseline,type-total,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+derived-v1,baseline,type-total,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+derived-v2,baseline,type-total,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+targeted,baseline,type-total,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+static,baseline,failure-ratio,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+derived-v1,baseline,failure-ratio,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+derived-v2,baseline,failure-ratio,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+targeted,baseline,failure-ratio,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+static,baseline,count-compare,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+derived-v1,baseline,count-compare,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+derived-v2,baseline,count-compare,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+targeted,baseline,count-compare,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+static,baseline,verify-probes,research -> analysis -> writer,3,True,0.667,0.667,False,none,
+derived-v1,baseline,verify-probes,research -> analysis -> writer,3,True,0.667,0.667,False,none,
+derived-v2,baseline,verify-probes,research -> analysis -> writer,3,True,0.667,0.667,False,none,
+targeted,baseline,verify-probes,(none),0,False,0.0,0.0,False,reported,"incomplete: no deployed agent satisfies ['verification'], which this task requires"
+static,baseline,confirm-kinds,research -> analysis -> writer,3,True,0.667,0.667,False,none,
+derived-v1,baseline,confirm-kinds,research -> analysis -> writer,3,True,0.667,0.667,False,none,
+derived-v2,baseline,confirm-kinds,research -> analysis -> writer,3,True,0.667,0.667,False,none,
+targeted,baseline,confirm-kinds,(none),0,False,0.0,0.0,False,reported,"incomplete: no deployed agent satisfies ['verification'], which this task requires"
+static,baseline,absent-backoff,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v1,baseline,absent-backoff,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v2,baseline,absent-backoff,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+targeted,baseline,absent-backoff,research -> writer,2,True,1.0,1.0,False,none,
+static,baseline,absent-replicas,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v1,baseline,absent-replicas,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+derived-v2,baseline,absent-replicas,research -> analysis -> writer,3,True,0.667,1.0,False,none,
+targeted,baseline,absent-replicas,research -> writer,2,True,1.0,1.0,False,none,
 static,agent-added,probe-count,research -> analysis -> writer,3,True,0.667,1.0,True,none,
 derived-v1,agent-added,probe-count,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
 derived-v2,agent-added,probe-count,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
 targeted,agent-added,probe-count,research -> writer,2,True,1.0,1.0,False,none,
+static,agent-added,mcp-kinds,research -> analysis -> writer,3,True,0.667,1.0,True,none,
+derived-v1,agent-added,mcp-kinds,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+derived-v2,agent-added,mcp-kinds,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+targeted,agent-added,mcp-kinds,research -> writer,2,True,1.0,1.0,False,none,
+static,agent-added,failure-count,research -> analysis -> writer,3,True,0.667,1.0,True,none,
+derived-v1,agent-added,failure-count,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+derived-v2,agent-added,failure-count,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+targeted,agent-added,failure-count,research -> writer,2,True,1.0,1.0,False,none,
 static,agent-added,protocol-diff,research -> analysis -> writer,3,True,0.667,1.0,True,none,
 derived-v1,agent-added,protocol-diff,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
 derived-v2,agent-added,protocol-diff,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
 targeted,agent-added,protocol-diff,research -> writer,2,True,1.0,1.0,False,none,
+static,agent-added,protocol-layers,research -> analysis -> writer,3,True,0.667,1.0,True,none,
+derived-v1,agent-added,protocol-layers,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+derived-v2,agent-added,protocol-layers,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+targeted,agent-added,protocol-layers,research -> writer,2,True,1.0,1.0,False,none,
 static,agent-added,failure-average,research -> analysis -> writer,3,True,1.0,1.0,True,none,
 derived-v1,agent-added,failure-average,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
 derived-v2,agent-added,failure-average,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
@@ -35,18 +83,54 @@ static,agent-added,capability-product,research -> analysis -> writer,3,True,1.0,
 derived-v1,agent-added,capability-product,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
 derived-v2,agent-added,capability-product,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
 targeted,agent-added,capability-product,research -> analysis -> writer,3,True,1.0,1.0,False,none,
-static,agent-added,absent-fact,research -> analysis -> writer,3,True,0.667,1.0,True,none,
-derived-v1,agent-added,absent-fact,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
-derived-v2,agent-added,absent-fact,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
-targeted,agent-added,absent-fact,research -> writer,2,True,1.0,1.0,False,none,
+static,agent-added,type-total,research -> analysis -> writer,3,True,1.0,1.0,True,none,
+derived-v1,agent-added,type-total,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+derived-v2,agent-added,type-total,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+targeted,agent-added,type-total,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+static,agent-added,failure-ratio,research -> analysis -> writer,3,True,1.0,1.0,True,none,
+derived-v1,agent-added,failure-ratio,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+derived-v2,agent-added,failure-ratio,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+targeted,agent-added,failure-ratio,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+static,agent-added,count-compare,research -> analysis -> writer,3,True,1.0,1.0,True,none,
+derived-v1,agent-added,count-compare,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+derived-v2,agent-added,count-compare,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+targeted,agent-added,count-compare,research -> analysis -> writer,3,True,1.0,1.0,False,none,
+static,agent-added,verify-probes,research -> analysis -> writer,3,True,0.667,0.667,True,none,
+derived-v1,agent-added,verify-probes,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+derived-v2,agent-added,verify-probes,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+targeted,agent-added,verify-probes,research -> factcheck -> writer,3,True,1.0,1.0,False,none,
+static,agent-added,confirm-kinds,research -> analysis -> writer,3,True,0.667,0.667,True,none,
+derived-v1,agent-added,confirm-kinds,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+derived-v2,agent-added,confirm-kinds,research -> factcheck -> analysis -> writer,4,True,0.75,1.0,False,none,
+targeted,agent-added,confirm-kinds,research -> factcheck -> writer,3,True,1.0,1.0,False,none,
+static,agent-added,absent-backoff,research -> analysis -> writer,3,True,0.667,1.0,True,none,
+derived-v1,agent-added,absent-backoff,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+derived-v2,agent-added,absent-backoff,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+targeted,agent-added,absent-backoff,research -> writer,2,True,1.0,1.0,False,none,
+static,agent-added,absent-replicas,research -> analysis -> writer,3,True,0.667,1.0,True,none,
+derived-v1,agent-added,absent-replicas,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+derived-v2,agent-added,absent-replicas,research -> factcheck -> analysis -> writer,4,True,0.5,1.0,False,none,
+targeted,agent-added,absent-replicas,research -> writer,2,True,1.0,1.0,False,none,
 static,analysis-removed,probe-count,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['analysis']
 derived-v1,analysis-removed,probe-count,research,1,False,1.0,0.5,False,reported,incomplete: research; produced findings; cannot produce 'report'
 derived-v2,analysis-removed,probe-count,research -> writer,2,True,1.0,1.0,False,none,
 targeted,analysis-removed,probe-count,research -> writer,2,True,1.0,1.0,False,none,
+static,analysis-removed,mcp-kinds,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,mcp-kinds,research,1,False,1.0,0.5,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,mcp-kinds,research -> writer,2,True,1.0,1.0,False,none,
+targeted,analysis-removed,mcp-kinds,research -> writer,2,True,1.0,1.0,False,none,
+static,analysis-removed,failure-count,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,failure-count,research,1,False,1.0,0.5,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,failure-count,research -> writer,2,True,1.0,1.0,False,none,
+targeted,analysis-removed,failure-count,research -> writer,2,True,1.0,1.0,False,none,
 static,analysis-removed,protocol-diff,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['analysis']
 derived-v1,analysis-removed,protocol-diff,research,1,False,1.0,0.5,False,reported,incomplete: research; produced findings; cannot produce 'report'
 derived-v2,analysis-removed,protocol-diff,research -> writer,2,True,1.0,1.0,False,none,
 targeted,analysis-removed,protocol-diff,research -> writer,2,True,1.0,1.0,False,none,
+static,analysis-removed,protocol-layers,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,protocol-layers,research,1,False,1.0,0.5,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,protocol-layers,research -> writer,2,True,1.0,1.0,False,none,
+targeted,analysis-removed,protocol-layers,research -> writer,2,True,1.0,1.0,False,none,
 static,analysis-removed,failure-average,research -> analysis -> writer,3,False,1.0,1.0,True,runtime,calls missing agent(s): ['analysis']
 derived-v1,analysis-removed,failure-average,research,1,False,1.0,0.333,False,reported,incomplete: research; produced findings; cannot produce 'report'
 derived-v2,analysis-removed,failure-average,research -> writer,2,True,1.0,0.667,False,none,
@@ -55,18 +139,54 @@ static,analysis-removed,capability-product,research -> analysis -> writer,3,Fals
 derived-v1,analysis-removed,capability-product,research,1,False,1.0,0.333,False,reported,incomplete: research; produced findings; cannot produce 'report'
 derived-v2,analysis-removed,capability-product,research -> writer,2,True,1.0,0.667,False,none,
 targeted,analysis-removed,capability-product,(none),0,False,0.0,0.0,False,reported,"incomplete: no deployed agent satisfies ['computation'], which this task requires"
-static,analysis-removed,absent-fact,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['analysis']
-derived-v1,analysis-removed,absent-fact,research,1,False,1.0,0.5,False,reported,incomplete: research; produced findings; cannot produce 'report'
-derived-v2,analysis-removed,absent-fact,research -> writer,2,True,1.0,1.0,False,none,
-targeted,analysis-removed,absent-fact,research -> writer,2,True,1.0,1.0,False,none,
+static,analysis-removed,type-total,research -> analysis -> writer,3,False,1.0,1.0,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,type-total,research,1,False,1.0,0.333,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,type-total,research -> writer,2,True,1.0,0.667,False,none,
+targeted,analysis-removed,type-total,(none),0,False,0.0,0.0,False,reported,"incomplete: no deployed agent satisfies ['computation'], which this task requires"
+static,analysis-removed,failure-ratio,research -> analysis -> writer,3,False,1.0,1.0,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,failure-ratio,research,1,False,1.0,0.333,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,failure-ratio,research -> writer,2,True,1.0,0.667,False,none,
+targeted,analysis-removed,failure-ratio,(none),0,False,0.0,0.0,False,reported,"incomplete: no deployed agent satisfies ['computation'], which this task requires"
+static,analysis-removed,count-compare,research -> analysis -> writer,3,False,1.0,1.0,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,count-compare,research,1,False,1.0,0.333,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,count-compare,research -> writer,2,True,1.0,0.667,False,none,
+targeted,analysis-removed,count-compare,(none),0,False,0.0,0.0,False,reported,"incomplete: no deployed agent satisfies ['computation'], which this task requires"
+static,analysis-removed,verify-probes,research -> analysis -> writer,3,False,0.667,0.667,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,verify-probes,research,1,False,1.0,0.333,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,verify-probes,research -> writer,2,True,1.0,0.667,False,none,
+targeted,analysis-removed,verify-probes,(none),0,False,0.0,0.0,False,reported,"incomplete: no deployed agent satisfies ['verification'], which this task requires"
+static,analysis-removed,confirm-kinds,research -> analysis -> writer,3,False,0.667,0.667,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,confirm-kinds,research,1,False,1.0,0.333,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,confirm-kinds,research -> writer,2,True,1.0,0.667,False,none,
+targeted,analysis-removed,confirm-kinds,(none),0,False,0.0,0.0,False,reported,"incomplete: no deployed agent satisfies ['verification'], which this task requires"
+static,analysis-removed,absent-backoff,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,absent-backoff,research,1,False,1.0,0.5,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,absent-backoff,research -> writer,2,True,1.0,1.0,False,none,
+targeted,analysis-removed,absent-backoff,research -> writer,2,True,1.0,1.0,False,none,
+static,analysis-removed,absent-replicas,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['analysis']
+derived-v1,analysis-removed,absent-replicas,research,1,False,1.0,0.5,False,reported,incomplete: research; produced findings; cannot produce 'report'
+derived-v2,analysis-removed,absent-replicas,research -> writer,2,True,1.0,1.0,False,none,
+targeted,analysis-removed,absent-replicas,research -> writer,2,True,1.0,1.0,False,none,
 static,research-removed,probe-count,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['research']
 derived-v1,research-removed,probe-count,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
 derived-v2,research-removed,probe-count,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
 targeted,research-removed,probe-count,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,mcp-kinds,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,mcp-kinds,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,mcp-kinds,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,mcp-kinds,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,failure-count,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,failure-count,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,failure-count,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,failure-count,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
 static,research-removed,protocol-diff,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['research']
 derived-v1,research-removed,protocol-diff,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
 derived-v2,research-removed,protocol-diff,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
 targeted,research-removed,protocol-diff,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,protocol-layers,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,protocol-layers,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,protocol-layers,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,protocol-layers,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
 static,research-removed,failure-average,research -> analysis -> writer,3,False,1.0,1.0,True,runtime,calls missing agent(s): ['research']
 derived-v1,research-removed,failure-average,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
 derived-v2,research-removed,failure-average,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
@@ -75,7 +195,31 @@ static,research-removed,capability-product,research -> analysis -> writer,3,Fals
 derived-v1,research-removed,capability-product,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
 derived-v2,research-removed,capability-product,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
 targeted,research-removed,capability-product,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
-static,research-removed,absent-fact,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['research']
-derived-v1,research-removed,absent-fact,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
-derived-v2,research-removed,absent-fact,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
-targeted,research-removed,absent-fact,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,type-total,research -> analysis -> writer,3,False,1.0,1.0,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,type-total,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,type-total,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,type-total,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,failure-ratio,research -> analysis -> writer,3,False,1.0,1.0,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,failure-ratio,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,failure-ratio,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,failure-ratio,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,count-compare,research -> analysis -> writer,3,False,1.0,1.0,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,count-compare,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,count-compare,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,count-compare,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,verify-probes,research -> analysis -> writer,3,False,0.667,0.667,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,verify-probes,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,verify-probes,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,verify-probes,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,confirm-kinds,research -> analysis -> writer,3,False,0.667,0.667,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,confirm-kinds,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,confirm-kinds,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,confirm-kinds,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,absent-backoff,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,absent-backoff,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,absent-backoff,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,absent-backoff,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+static,research-removed,absent-replicas,research -> analysis -> writer,3,False,0.667,1.0,True,runtime,calls missing agent(s): ['research']
+derived-v1,research-removed,absent-replicas,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+derived-v2,research-removed,absent-replicas,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'
+targeted,research-removed,absent-replicas,(none),0,False,0.0,0.0,False,reported,incomplete: (no agents usable); produced nothing; cannot produce 'report'

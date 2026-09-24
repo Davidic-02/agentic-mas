@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="660" viewBox="0 0 1160 660" font-family="Times New Roman, Georgia, serif">
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0,1 L8,4.5 L0,8 z" fill="#1F4E79"/>
+    </marker>
+    <marker id="ag" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0,1 L8,4.5 L0,8 z" fill="#9AA5B1"/>
+    </marker>
+  </defs>
+  <rect width="1160" height="660" fill="#FFFFFF"/>
+
+  <!-- ================= DEPLOYED BAND ================= -->
+  <rect x="24" y="22" width="1112" height="150" fill="#F5F9FD" stroke="#BDD7EE" stroke-width="1.2"/>
+  <rect x="24" y="22" width="5" height="150" fill="#1F4E79"/>
+  <text x="44" y="46" font-size="17" font-weight="bold" fill="#1F4E79">DEPLOYED IN THE CLUSTER</text>
+  <text x="330" y="46" font-size="13.5" fill="#44546A">identical for both tasks &#8212; four agents, discovered by label</text>
+
+  <!-- agent chips -->
+  <g>
+    <rect x="48" y="62" width="250" height="92" rx="4" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.6"/>
+    <text x="173" y="86" font-size="16" font-weight="bold" fill="#1F4E79" text-anchor="middle">research</text>
+    <text x="173" y="108" font-size="13" fill="#333" text-anchor="middle">consumes: query</text>
+    <text x="173" y="126" font-size="13" fill="#333" text-anchor="middle">produces: findings</text>
+    <text x="173" y="145" font-size="12.5" fill="#8A8F98" text-anchor="middle">satisfies: &#8212;</text>
+  </g>
+  <g>
+    <rect x="318" y="62" width="250" height="92" rx="4" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.6"/>
+    <text x="443" y="86" font-size="16" font-weight="bold" fill="#1F4E79" text-anchor="middle">factcheck</text>
+    <text x="443" y="108" font-size="13" fill="#333" text-anchor="middle">consumes: findings</text>
+    <text x="443" y="126" font-size="13" fill="#333" text-anchor="middle">produces: findings</text>
+    <text x="443" y="145" font-size="12.5" fill="#2E74B5" text-anchor="middle">satisfies: verification</text>
+  </g>
+  <g>
+    <rect x="588" y="62" width="250" height="92" rx="4" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.6"/>
+    <text x="713" y="86" font-size="16" font-weight="bold" fill="#1F4E79" text-anchor="middle">analysis</text>
+    <text x="713" y="108" font-size="13" fill="#333" text-anchor="middle">consumes: findings</text>
+    <text x="713" y="126" font-size="13" fill="#333" text-anchor="middle">produces: conclusions</text>
+    <text x="713" y="145" font-size="12.5" fill="#2E74B5" text-anchor="middle">satisfies: computation</text>
+  </g>
+  <g>
+    <rect x="858" y="62" width="250" height="92" rx="4" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.6"/>
+    <text x="983" y="86" font-size="16" font-weight="bold" fill="#1F4E79" text-anchor="middle">writer</text>
+    <text x="983" y="108" font-size="13" fill="#333" text-anchor="middle">consumes: findings</text>
+    <text x="983" y="126" font-size="13" fill="#333" text-anchor="middle">produces: report</text>
+    <text x="983" y="145" font-size="12.5" fill="#8A8F98" text-anchor="middle">satisfies: &#8212;</text>
+  </g>
+
+  <!-- split -->
+  <line x1="580" y1="188" x2="580" y2="636" stroke="#D6DEE7" stroke-width="1.2" stroke-dasharray="5 4"/>
+
+  <!-- ================= LEFT: no requirement ================= -->
+  <text x="48" y="212" font-size="15" font-weight="bold" fill="#1F4E79">TASK A</text>
+  <text x="48" y="236" font-size="14.5" fill="#222">&#8220;How many probe types does Kubernetes have?&#8221;</text>
+
+  <rect x="48" y="252" width="484" height="34" rx="3" fill="#EEF3F8" stroke="#BDD7EE"/>
+  <text x="60" y="274" font-size="13.5" fill="#44546A">requirements raised:</text>
+  <text x="196" y="274" font-size="13.5" font-weight="bold" fill="#1F4E79">none</text>
+
+  <!-- chain A -->
+  <rect x="48" y="316" width="150" height="46" rx="4" fill="#1F4E79"/>
+  <text x="123" y="345" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">research</text>
+  <line x1="198" y1="339" x2="258" y2="339" stroke="#1F4E79" stroke-width="2" marker-end="url(#a)"/>
+  <text x="228" y="330" font-size="11.5" fill="#44546A" text-anchor="middle">findings</text>
+  <rect x="264" y="316" width="150" height="46" rx="4" fill="#1F4E79"/>
+  <text x="339" y="345" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">writer</text>
+  <line x1="414" y1="339" x2="470" y2="339" stroke="#1F4E79" stroke-width="2" marker-end="url(#a)"/>
+  <text x="498" y="344" font-size="13.5" font-weight="bold" fill="#1F4E79">report</text>
+
+  <!-- unused A -->
+  <text x="48" y="404" font-size="13" fill="#8A8F98">not recruited &#8212; no requirement obliges them:</text>
+  <g opacity="0.45">
+    <rect x="48" y="418" width="150" height="40" rx="4" fill="#FFFFFF" stroke="#9AA5B1" stroke-dasharray="4 3"/>
+    <text x="123" y="443" font-size="14" fill="#6B7280" text-anchor="middle">factcheck</text>
+    <rect x="216" y="418" width="150" height="40" rx="4" fill="#FFFFFF" stroke="#9AA5B1" stroke-dasharray="4 3"/>
+    <text x="291" y="443" font-size="14" fill="#6B7280" text-anchor="middle">analysis</text>
+  </g>
+  <rect x="48" y="486" width="484" height="62" rx="3" fill="#F7F9FB" stroke="#D6DEE7"/>
+  <text x="60" y="508" font-size="13" fill="#44546A">Team size 2. Precision 1.00 against the required set</text>
+  <text x="60" y="528" font-size="13" fill="#44546A">{research, writer}. Two model calls, not four.</text>
+
+  <!-- ================= RIGHT: computation ================= -->
+  <text x="628" y="212" font-size="15" font-weight="bold" fill="#1F4E79">TASK B</text>
+  <text x="628" y="236" font-size="14.5" fill="#222">&#8220;How many failure modes per category on average?&#8221;</text>
+
+  <rect x="628" y="252" width="484" height="34" rx="3" fill="#EEF3F8" stroke="#BDD7EE"/>
+  <text x="640" y="274" font-size="13.5" fill="#44546A">requirements raised:</text>
+  <text x="776" y="274" font-size="13.5" font-weight="bold" fill="#1F4E79">computation</text>
+
+  <!-- chain B -->
+  <rect x="628" y="316" width="132" height="46" rx="4" fill="#1F4E79"/>
+  <text x="694" y="345" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">research</text>
+  <line x1="760" y1="339" x2="800" y2="339" stroke="#1F4E79" stroke-width="2" marker-end="url(#a)"/>
+  <text x="780" y="330" font-size="11.5" fill="#44546A" text-anchor="middle">findings</text>
+  <rect x="806" y="316" width="132" height="46" rx="4" fill="#2E74B5"/>
+  <text x="872" y="345" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">analysis</text>
+  <line x1="938" y1="339" x2="978" y2="339" stroke="#1F4E79" stroke-width="2" marker-end="url(#a)"/>
+  <text x="958" y="330" font-size="11.5" fill="#44546A" text-anchor="middle">concl.</text>
+  <rect x="984" y="316" width="128" height="46" rx="4" fill="#1F4E79"/>
+  <text x="1048" y="345" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">writer</text>
+
+  <text x="872" y="382" font-size="12" fill="#2E74B5" text-anchor="middle">recruited because it satisfies &#8220;computation&#8221;</text>
+
+  <!-- unused B -->
+  <text x="628" y="404" font-size="13" fill="#8A8F98">not recruited:</text>
+  <g opacity="0.45">
+    <rect x="628" y="418" width="150" height="40" rx="4" fill="#FFFFFF" stroke="#9AA5B1" stroke-dasharray="4 3"/>
+    <text x="703" y="443" font-size="14" fill="#6B7280" text-anchor="middle">factcheck</text>
+  </g>
+  <rect x="628" y="486" width="484" height="62" rx="3" fill="#F7F9FB" stroke="#D6DEE7"/>
+  <text x="640" y="508" font-size="13" fill="#44546A">Team size 3. Precision 1.00 against the required set</text>
+  <text x="640" y="528" font-size="13" fill="#44546A">{research, analysis, writer}.</text>
+
+  <!-- ================= FOOTER CLAIM ================= -->
+  <rect x="24" y="576" width="1112" height="60" rx="3" fill="#FDF6E3" stroke="#E0C97F"/>
+  <text x="44" y="600" font-size="14" fill="#5C4A1A">Nothing in the coordinator changed between the two panels, and nothing in the cluster changed. The team differs because the</text>
+  <text x="44" y="622" font-size="14" fill="#5C4A1A">task differs. Under task-blind formation both panels yield research &#8594; factcheck &#8594; analysis &#8594; writer, irrespective of need.</text>
+</svg>
