@@ -250,10 +250,10 @@ const figure = (file, w, h, capText) => [
   }),
 ];
 
-const figureArch = figure("figure_architecture.png", 668, 403,
+const figureArch = figure("figure_architecture.png", 668, 413,
   "Figure 1. System architecture. Agents are independently deployed workloads; A2A carries agent-to-agent traffic and MCP carries all tool access. The coordinator learns which agents exist by querying the cluster, not from its own source.");
 
-const figureWithdraw = figure("figure_withdrawal.png", 668, 322,
+const figureWithdraw = figure("figure_withdrawal.png", 668, 340,
   "Figure 3. Withdrawal of an agent during execution, under a fixed plan and under re-formation. Recovery is possible only where a second agent satisfies the same requirement.");
 
 // ---- Figure 2 ------------------------------------------------------------
@@ -264,7 +264,7 @@ const figure1 = [
     children: [new ImageRun({
       type: "png",
       data: fs.readFileSync("figure_formation.png"),
-      transformation: { width: 668, height: 380 },
+      transformation: { width: 668, height: 391 },
     })],
   }),
   new Paragraph({

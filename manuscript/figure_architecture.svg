@@ -1,107 +1,102 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="700" viewBox="0 0 1160 700" font-family="Times New Roman, Georgia, serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="730" viewBox="0 0 1180 730" font-family="Arial">
   <defs>
-    <marker id="d" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
-      <path d="M0,1 L8,4.5 L0,8 z" fill="#1F4E79"/>
+    <linearGradient id="gPrimary" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#23598C"/>
+      <stop offset="100%" stop-color="#1B4F80"/>
+    </linearGradient>
+    <linearGradient id="gAccent" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3D84C4"/>
+      <stop offset="100%" stop-color="#2E74B5"/>
+    </linearGradient>
+    <filter id="lift" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="1.4" stdDeviation="2.2"
+                    flood-color="#0F2740" flood-opacity="0.13"/>
+    </filter>
+    <filter id="liftSoft" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.6"
+                    flood-color="#0F2740" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arw" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0.5,1 L7,4 L0.5,7" fill="none" stroke="#1B4F80"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arwMute" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0.5,1 L7,4 L0.5,7" fill="none" stroke="#7A8899"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
   </defs>
-  <rect width="1160" height="700" fill="#FFFFFF"/>
-
-  <!-- request -->
-  <rect x="470" y="20" width="220" height="38" rx="4" fill="#FFFFFF" stroke="#44546A" stroke-width="1.4"/>
-  <text x="580" y="45" font-size="15" fill="#222" text-anchor="middle">user question</text>
-  <line x1="580" y1="58" x2="580" y2="84" stroke="#1F4E79" stroke-width="2" marker-end="url(#d)"/>
-
-  <!-- coordinator -->
-  <rect x="330" y="90" width="500" height="86" rx="5" fill="#1F4E79"/>
-  <text x="580" y="119" font-size="17" font-weight="bold" fill="#FFFFFF" text-anchor="middle">coordinator</text>
-  <text x="580" y="142" font-size="13" fill="#CFE0F0" text-anchor="middle">discovers deployed agents &#183; reads their cards</text>
-  <text x="580" y="162" font-size="13" fill="#CFE0F0" text-anchor="middle">profiles the task &#183; derives the team and its order</text>
-
-  <!-- queries k8s -->
-  <line x1="330" y1="133" x2="196" y2="133" stroke="#2E74B5" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#d)"/>
-  <rect x="26" y="112" width="168" height="44" rx="4" fill="#EEF3F8" stroke="#2E74B5" stroke-width="1.3"/>
-  <text x="110" y="132" font-size="13" fill="#1F4E79" text-anchor="middle">Kubernetes API</text>
-  <text x="110" y="148" font-size="11.5" fill="#44546A" text-anchor="middle">list Services by label</text>
-
-  <!-- A2A band -->
-  <rect x="26" y="196" width="1108" height="30" rx="3" fill="#DEEBF7"/>
-  <text x="44" y="216" font-size="13.5" font-weight="bold" fill="#1F4E79">A2A</text>
-  <text x="92" y="216" font-size="13" fill="#44546A">agent &#8596; agent &#183; capability cards published at a well-known endpoint &#183; tasks over JSON-RPC</text>
-
-  <!-- agents -->
-  <g>
-    <rect x="34" y="250" width="200" height="74" rx="4" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.6"/>
-    <text x="134" y="275" font-size="15" font-weight="bold" fill="#1F4E79" text-anchor="middle">research</text>
-    <text x="134" y="296" font-size="12" fill="#444" text-anchor="middle">query &#8594; findings</text>
-    <text x="134" y="314" font-size="11.5" fill="#8A8F98" text-anchor="middle">pod &#183; service &#183; probe</text>
-  </g>
-  <g>
-    <rect x="252" y="250" width="200" height="74" rx="4" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.6"/>
-    <text x="352" y="275" font-size="15" font-weight="bold" fill="#1F4E79" text-anchor="middle">factcheck</text>
-    <text x="352" y="296" font-size="12" fill="#444" text-anchor="middle">findings &#8594; findings</text>
-    <text x="352" y="314" font-size="11.5" fill="#8A8F98" text-anchor="middle">satisfies verification</text>
-  </g>
-  <g>
-    <rect x="470" y="250" width="200" height="74" rx="4" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.6"/>
-    <text x="570" y="275" font-size="15" font-weight="bold" fill="#1F4E79" text-anchor="middle">analysis</text>
-    <text x="570" y="296" font-size="12" fill="#444" text-anchor="middle">findings &#8594; conclusions</text>
-    <text x="570" y="314" font-size="11.5" fill="#8A8F98" text-anchor="middle">satisfies computation</text>
-  </g>
-  <g>
-    <rect x="688" y="250" width="200" height="74" rx="4" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.6"/>
-    <text x="788" y="275" font-size="15" font-weight="bold" fill="#1F4E79" text-anchor="middle">compute</text>
-    <text x="788" y="296" font-size="12" fill="#444" text-anchor="middle">findings &#8594; conclusions</text>
-    <text x="788" y="314" font-size="11.5" fill="#8A8F98" text-anchor="middle">satisfies computation</text>
-  </g>
-  <g>
-    <rect x="906" y="250" width="200" height="74" rx="4" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.6"/>
-    <text x="1006" y="275" font-size="15" font-weight="bold" fill="#1F4E79" text-anchor="middle">writer</text>
-    <text x="1006" y="296" font-size="12" fill="#444" text-anchor="middle">findings &#8594; report</text>
-    <text x="1006" y="314" font-size="11.5" fill="#8A8F98" text-anchor="middle">pod &#183; service &#183; probe</text>
-  </g>
-
-  <!-- MCP band -->
-  <rect x="26" y="356" width="1108" height="30" rx="3" fill="#DEEBF7"/>
-  <text x="44" y="376" font-size="13.5" font-weight="bold" fill="#1F4E79">MCP</text>
-  <text x="92" y="376" font-size="13" fill="#44546A">agent &#8596; tool &#183; each agent discovers the available tools from the server at start-up</text>
-
-  <!-- vertical links agents -> mcp -->
-  <line x1="134" y1="324" x2="134" y2="354" stroke="#1F4E79" stroke-width="1.6"/>
-  <line x1="352" y1="324" x2="352" y2="354" stroke="#1F4E79" stroke-width="1.6"/>
-  <line x1="570" y1="324" x2="570" y2="354" stroke="#1F4E79" stroke-width="1.6"/>
-  <line x1="788" y1="324" x2="788" y2="354" stroke="#1F4E79" stroke-width="1.6"/>
-  <line x1="1006" y1="324" x2="1006" y2="354" stroke="#1F4E79" stroke-width="1.6"/>
-
-  <!-- MCP server -->
-  <rect x="390" y="410" width="380" height="72" rx="4" fill="#2E74B5"/>
-  <text x="580" y="436" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">MCP server</text>
-  <text x="580" y="458" font-size="12.5" fill="#DDEAF6" text-anchor="middle">search_documents &#183; calculate</text>
-  <text x="580" y="475" font-size="11.5" fill="#BBD3EA" text-anchor="middle">no agent imports a tool function directly</text>
-  <line x1="580" y1="386" x2="580" y2="408" stroke="#1F4E79" stroke-width="1.6" marker-end="url(#d)"/>
-  <line x1="580" y1="482" x2="580" y2="506" stroke="#1F4E79" stroke-width="1.6" marker-end="url(#d)"/>
-  <rect x="440" y="508" width="280" height="34" rx="4" fill="#FFFFFF" stroke="#44546A" stroke-width="1.3"/>
-  <text x="580" y="530" font-size="13" fill="#222" text-anchor="middle">document corpus</text>
-
-  <!-- cloud-native band -->
-  <rect x="26" y="570" width="1108" height="106" rx="4" fill="#F5F9FD" stroke="#BDD7EE" stroke-width="1.2"/>
-  <rect x="26" y="570" width="5" height="106" fill="#1F4E79"/>
-  <text x="46" y="595" font-size="15" font-weight="bold" fill="#1F4E79">CLOUD-NATIVE LAYER</text>
-  <text x="252" y="595" font-size="13" fill="#44546A">every agent above is an independently deployed workload</text>
-  <g font-size="12.5" fill="#333">
-    <rect x="48" y="610" width="196" height="50" rx="3" fill="#FFFFFF" stroke="#BDD7EE"/>
-    <text x="146" y="631" text-anchor="middle" font-weight="bold" fill="#1F4E79">Deployment</text>
-    <text x="146" y="649" text-anchor="middle">one per agent role</text>
-    <rect x="262" y="610" width="196" height="50" rx="3" fill="#FFFFFF" stroke="#BDD7EE"/>
-    <text x="360" y="631" text-anchor="middle" font-weight="bold" fill="#1F4E79">Service</text>
-    <text x="360" y="649" text-anchor="middle">stable name, load balanced</text>
-    <rect x="476" y="610" width="196" height="50" rx="3" fill="#FFFFFF" stroke="#BDD7EE"/>
-    <text x="574" y="631" text-anchor="middle" font-weight="bold" fill="#1F4E79">Readiness probe</text>
-    <text x="574" y="649" text-anchor="middle">fetches the agent card</text>
-    <rect x="690" y="610" width="196" height="50" rx="3" fill="#FFFFFF" stroke="#BDD7EE"/>
-    <text x="788" y="631" text-anchor="middle" font-weight="bold" fill="#1F4E79">Replicas</text>
-    <text x="788" y="649" text-anchor="middle">scaled per agent</text>
-    <rect x="904" y="610" width="196" height="50" rx="3" fill="#FFFFFF" stroke="#BDD7EE"/>
-    <text x="1002" y="631" text-anchor="middle" font-weight="bold" fill="#1F4E79">Label</text>
-    <text x="1002" y="649" text-anchor="middle">a2a.agent/enabled</text>
-  </g>
+  <rect width="1180" height="730" fill="#FDFEFF"/>
+  <rect x="468" y="24" width="244" height="40" rx="20" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="590" y="50" font-size="13.5" fill="#0F2740" font-weight="normal" text-anchor="middle">user question</text>
+  <line x1="590" y1="64" x2="590" y2="92" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="300" y="98" width="580" height="92" rx="11" fill="url(#gPrimary)" filter="url(#lift)"/>
+  <text x="590" y="128" font-size="17" fill="#FFFFFF" font-weight="bold" text-anchor="middle">coordinator</text>
+  <text x="590" y="152" font-size="12.5" fill="#C6DBEE" font-weight="normal" text-anchor="middle">discovers deployed agents · reads their cards</text>
+  <text x="590" y="172" font-size="12.5" fill="#C6DBEE" font-weight="normal" text-anchor="middle">profiles the task · derives the team and its order</text>
+  <line x1="300" y1="144" x2="212" y2="144" stroke="#2E74B5" stroke-width="1.4" stroke-dasharray="4 3" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="28" y="120" width="178" height="50" rx="9" fill="#F4F8FC" stroke="#BFD6EA" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="117" y="141" font-size="12.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">Kubernetes API</text>
+  <text x="117" y="158" font-size="11" fill="#7A8899" font-weight="normal" text-anchor="middle">list Services by label</text>
+  <rect x="28" y="212" width="1124" height="34" rx="8" fill="#F4F8FC" stroke="#D6E3F0" stroke-width="1"/>
+  <rect x="28" y="212" width="4" height="34" rx="2" fill="#1B4F80"/>
+  <text x="50" y="234" font-size="13" fill="#1B4F80" font-weight="bold">A2A</text>
+  <text x="96" y="234" font-size="12" fill="#7A8899" font-weight="normal">agent ↔ agent  ·  capability cards at a well-known endpoint  ·  tasks over JSON-RPC</text>
+  <rect x="34" y="272" width="212" height="88" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="140.0" y="300" font-size="14.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">research</text>
+  <text x="140.0" y="322" font-size="11.8" fill="#0F2740" font-weight="normal" text-anchor="middle">query → findings</text>
+  <text x="140.0" y="343" font-size="11" fill="#D6E3F0" font-weight="normal" text-anchor="middle">·</text>
+  <rect x="256" y="272" width="212" height="88" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="362.0" y="300" font-size="14.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">factcheck</text>
+  <text x="362.0" y="322" font-size="11.8" fill="#0F2740" font-weight="normal" text-anchor="middle">findings → findings</text>
+  <text x="362.0" y="343" font-size="11" fill="#3E8FD0" font-weight="normal" text-anchor="middle">satisfies verification</text>
+  <rect x="478" y="272" width="212" height="88" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="584.0" y="300" font-size="14.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">analysis</text>
+  <text x="584.0" y="322" font-size="11.8" fill="#0F2740" font-weight="normal" text-anchor="middle">findings → conclusions</text>
+  <text x="584.0" y="343" font-size="11" fill="#3E8FD0" font-weight="normal" text-anchor="middle">satisfies computation</text>
+  <rect x="700" y="272" width="212" height="88" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="806.0" y="300" font-size="14.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">compute</text>
+  <text x="806.0" y="322" font-size="11.8" fill="#0F2740" font-weight="normal" text-anchor="middle">findings → conclusions</text>
+  <text x="806.0" y="343" font-size="11" fill="#3E8FD0" font-weight="normal" text-anchor="middle">satisfies computation</text>
+  <rect x="922" y="272" width="212" height="88" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="1028.0" y="300" font-size="14.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">writer</text>
+  <text x="1028.0" y="322" font-size="11.8" fill="#0F2740" font-weight="normal" text-anchor="middle">findings → report</text>
+  <text x="1028.0" y="343" font-size="11" fill="#D6E3F0" font-weight="normal" text-anchor="middle">·</text>
+  <line x1="140.0" y1="360" x2="140.0" y2="392" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
+  <line x1="362.0" y1="360" x2="362.0" y2="392" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
+  <line x1="584.0" y1="360" x2="584.0" y2="392" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
+  <line x1="806.0" y1="360" x2="806.0" y2="392" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
+  <line x1="1028.0" y1="360" x2="1028.0" y2="392" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
+  <rect x="28" y="392" width="1124" height="34" rx="8" fill="#F4F8FC" stroke="#D6E3F0" stroke-width="1"/>
+  <rect x="28" y="392" width="4" height="34" rx="2" fill="#1B4F80"/>
+  <text x="50" y="414" font-size="13" fill="#1B4F80" font-weight="bold">MCP</text>
+  <text x="96" y="414" font-size="12" fill="#7A8899" font-weight="normal">agent ↔ tool  ·  each agent discovers the available tools from the server at start-up</text>
+  <line x1="590" y1="426" x2="590" y2="450" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="378" y="456" width="424" height="80" rx="11" fill="url(#gAccent)" filter="url(#lift)"/>
+  <text x="590" y="484" font-size="15" fill="#FFFFFF" font-weight="bold" text-anchor="middle">MCP server</text>
+  <text x="590" y="506" font-size="12.2" fill="#DCEBF8" font-weight="normal" text-anchor="middle">search_documents  ·  calculate</text>
+  <text x="590" y="525" font-size="11" fill="#B9D4EC" font-weight="normal" text-anchor="middle">no agent imports a tool function directly</text>
+  <line x1="590" y1="536" x2="590" y2="562" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="452" y="568" width="276" height="38" rx="19" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="590" y="592" font-size="12.5" fill="#0F2740" font-weight="normal" text-anchor="middle">document corpus</text>
+  <rect x="28" y="632" width="1124" height="76" rx="10" fill="#F4F8FC" stroke="#D6E3F0" stroke-width="1"/>
+  <rect x="28" y="632" width="4" height="76" rx="2" fill="#1B4F80"/>
+  <text x="50" y="656" font-size="10.5" fill="#1B4F80" font-weight="bold" letter-spacing="1.3">CLOUD-NATIVE LAYER</text>
+  <text x="196" y="656" font-size="12" fill="#7A8899" font-weight="normal">every agent above is an independently deployed workload</text>
+  <rect x="50" y="666" width="208" height="32" rx="7" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1"/>
+  <text x="154.0" y="680" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">Deployment</text>
+  <text x="154.0" y="693" font-size="10.5" fill="#7A8899" font-weight="normal" text-anchor="middle">one per agent role</text>
+  <rect x="268" y="666" width="208" height="32" rx="7" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1"/>
+  <text x="372.0" y="680" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">Service</text>
+  <text x="372.0" y="693" font-size="10.5" fill="#7A8899" font-weight="normal" text-anchor="middle">stable, balanced</text>
+  <rect x="486" y="666" width="208" height="32" rx="7" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1"/>
+  <text x="590.0" y="680" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">Readiness probe</text>
+  <text x="590.0" y="693" font-size="10.5" fill="#7A8899" font-weight="normal" text-anchor="middle">fetches the agent card</text>
+  <rect x="704" y="666" width="208" height="32" rx="7" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1"/>
+  <text x="808.0" y="680" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">Replicas</text>
+  <text x="808.0" y="693" font-size="10.5" fill="#7A8899" font-weight="normal" text-anchor="middle">scaled per agent</text>
+  <rect x="922" y="666" width="208" height="32" rx="7" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1"/>
+  <text x="1026.0" y="680" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">Label</text>
+  <text x="1026.0" y="693" font-size="10.5" fill="#7A8899" font-weight="normal" text-anchor="middle">a2a.agent/enabled</text>
 </svg>
