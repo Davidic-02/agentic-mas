@@ -195,7 +195,7 @@ const table1 = [
 // =========================================================================
 // METHODS (two columns)
 // =========================================================================
-const body2 = [
+const body2a = [
   h1("Materials and Methods"),
 
   h2("System architecture"),
@@ -203,6 +203,9 @@ const body2 = [
   p("Each agent is an autonomous loop: a request is sent to a model together with the agent's tool schemas; if the response contains tool calls they are executed and their results returned; the loop terminates when the model requests no further tools. The agents differ only in their brief and their permitted tools, so the loop is implemented once and shared."),
   p("All tool access passes through the Model Context Protocol. No agent imports a tool function directly; an MCP server exposes corpus search and arithmetic, and each agent discovers the available tools from that server at start-up. All inter-agent communication passes through the Agent2Agent protocol, each agent publishing a capability card at a well-known endpoint and accepting tasks over JSON-RPC. Each agent is packaged as a container and deployed as a Kubernetes Deployment with an associated Service, an HTTP readiness probe that retrieves the agent's own capability card, and an independently adjustable replica count."),
 
+];
+
+const body2b = [
   h2("Capability declaration"),
   p("An agent advertises its role in machine-readable form through tags carried in its A2A capability card. Let an agent be characterised as in Equation (1), where C denotes the information types the agent requires, P the types it returns, and S the requirement markers it is able to satisfy."),
   eq("a = ( Cₐ , Pₐ , Sₐ )", 1),
@@ -232,7 +235,28 @@ const body2 = [
 ];
 
 
-// ---- Figure 1 ------------------------------------------------------------
+// ---- figures ---------------------------------------------------------
+const figure = (file, w, h, capText) => [
+  new Paragraph({
+    alignment: AlignmentType.CENTER,
+    spacing: { before: 200, after: 80 },
+    children: [new ImageRun({ type: "png", data: fs.readFileSync(file),
+      transformation: { width: w, height: h } })],
+  }),
+  new Paragraph({
+    alignment: AlignmentType.CENTER,
+    spacing: { after: 180 },
+    children: [new TextRun({ text: capText, font: SERIF, size: SMALL, bold: true, color: NAVY })],
+  }),
+];
+
+const figureArch = figure("figure_architecture.png", 668, 403,
+  "Figure 1. System architecture. Agents are independently deployed workloads; A2A carries agent-to-agent traffic and MCP carries all tool access. The coordinator learns which agents exist by querying the cluster, not from its own source.");
+
+const figureWithdraw = figure("figure_withdrawal.png", 668, 322,
+  "Figure 3. Withdrawal of an agent during execution, under a fixed plan and under re-formation. Recovery is possible only where a second agent satisfies the same requirement.");
+
+// ---- Figure 2 ------------------------------------------------------------
 const figure1 = [
   new Paragraph({
     alignment: AlignmentType.CENTER,
@@ -247,7 +271,7 @@ const figure1 = [
     alignment: AlignmentType.CENTER,
     spacing: { after: 180 },
     children: [new TextRun({
-      text: "Figure 1. The same deployment yielding different teams for two tasks. Membership is decided by the requirements the task raises, not by which agents happen to be eligible.",
+      text: "Figure 2. The same deployment yielding different teams for two tasks. Membership is decided by the requirements the task raises, not by which agents happen to be eligible.",
       font: SERIF, size: SMALL, bold: true, color: NAVY })],
   }),
 ];
@@ -303,18 +327,21 @@ const table3 = [
   ]),
 ];
 
-const body4 = [
+const body4a = [
   p("Adaptivity separates the conditions sharply. Every scenario other than the baseline required modification of source under the static arrangement, forty-two modifications in total across the design, and none under any formed condition. The static arrangement also accounts for all twenty-eight runtime failures observed: because it cannot know that an agent is absent, it discovers the absence by invoking the agent, after other agents have already run and consumed resources."),
   p("Precision is the measure on which the first mechanism was found wanting. Task-blind formation scores 0.705 against the static team's 0.786, and forms larger teams, 3.50 agents against 3.00. The static team's recall, at 0.952, is itself below unity: it never includes the fact-checking agent, so the two tasks requiring a claim to be checked are answered by a team that cannot check one. The cause is visible in the scenario in which a fourth agent is deployed: formation includes that agent because it is eligible, not because any task requires it. Since the mechanism never observes the task, eligibility is the only criterion available to it."),
   p("Separating the two changes made to the mechanism shows where the improvement originates. Loosening the writer agent's declaration, which had previously required conclusions and thereby forced the analysis agent into every chain, raises precision from 0.705 to 0.804 but lowers recall from 0.976 to 0.929. Task-awareness is what carries precision to 1.000 while restoring recall to 1.000, and reduces the mean team to 2.36 agents. Table 5 shows the mechanism at work: teams differ by task, and match the pre-registered requirement sets exactly."),
   p("The most informative result is a reduction in completions. When the analysis agent is withdrawn, the loosened condition completes all fourteen tasks and the task-aware condition completes seven. The lower figure is the correct behaviour. Five of the fourteen tasks require arithmetic the corpus does not state and two require a claim to be checked; with neither an analysis nor a fact-checking agent deployed in that scenario, the loosened condition answers all of them using research and writer alone and reports success, whereas the task-aware condition declines those seven and names the absent capability in each case. The same behaviour appears in the baseline scenario, where the task-aware condition completes twelve of fourteen, declining the two verification tasks because no fact-checking agent is deployed. A system that answers an arithmetic question without an arithmetic agent has not succeeded but has failed silently, and no measure of completion alone distinguishes the two."),
 
+];
+
+const body4b = [
   h1("Discussion"),
   p("Runtime formation removes a genuine defect. A team written in source is an assertion about a deployment, and in a cloud-native environment that assertion decays without warning; formation eliminated every source modification the scenarios would otherwise have required, and converted twenty-eight runtime failures into determinations made before any agent was invoked. That much was expected."),
   p("The more useful discussion concerns the result that was not expected. The mechanism, as first implemented, was less precise than the arrangement it replaced. This was not an implementation defect but a property of the design: formation consulted the capability graph and nothing else, so an agent's eligibility was the whole of its claim to inclusion. Retaining that negative result was instructive, because the diagnosis it forced produced the final mechanism, and because it establishes that the adaptivity gain is not free."),
   p("A second observation deserves emphasis. Before the writer agent's declaration was loosened, arithmetic tasks succeeded under task-blind formation, but not because formation had determined that they required arithmetic. The writer required conclusions, only the analysis agent produced conclusions, and analysis was therefore unavoidable in every chain. The mechanism was working by an accident of how capabilities had been declared. This is worth stating plainly because it is a hazard specific to declaration-driven systems: a sufficiently constrained declaration can conceal the absence of a decision procedure, and the concealment is discovered only when the constraint is relaxed."),
   p("The finding with the broadest implication is that completion is an inadequate measure for these systems. Under withdrawal of the analysis agent, the condition completing more tasks is the condition behaving worse. This aligns with the multi-agent failure literature, in which the largest failure category concerns verification rather than execution, and systems report success while returning unreliable results [ref]. Formation offers a partial defence not available to a static team: because membership is decided before execution and against a stated requirement, a task whose requirements cannot be met is identifiable in advance rather than after the fact."),
-  p("Several limitations bound these results. The task profiler is a keyword matcher, chosen so that formation remains free of inference and therefore exactly measurable; it will not generalise to unusually phrased tasks, and a model-based profiler is the natural successor, though it would require a different evaluation design, since composition would cease to be exact and would have to be sampled. The task set comprises fourteen tasks over a four-document corpus. It exercises both requirement markers and separates the conditions, but it does not characterise the profiler's coverage over arbitrary phrasing. Requirement markers are declared by the author of each agent, so a miscategorised agent produces a miscategorised team, and nothing verifies a declaration against behaviour. Formation is computed once before execution, so an agent withdrawn during a run is not accommodated, which is the scenario formation is most obviously suited to and the one not tested here. Finally, answer quality under real inference was confirmed to be functional but was not measured, so the effect of team composition on the quality of the final answer remains open."),
+  p("Several limitations bound these results. The task profiler is a keyword matcher, chosen so that formation remains free of inference and therefore exactly measurable; it will not generalise to unusually phrased tasks, and a model-based profiler is the natural successor, though it would require a different evaluation design, since composition would cease to be exact and would have to be sampled. The task set comprises fourteen tasks over a four-document corpus. It exercises both requirement markers and separates the conditions, but it does not characterise the profiler's coverage over arbitrary phrasing. Requirement markers are declared by the author of each agent, so a miscategorised agent produces a miscategorised team, and nothing verifies a declaration against behaviour. Withdrawal during execution was tested and is reported above, but only for a process removed outright; an agent that remains reachable while failing to respond was not examined, and detection in that case would depend on timeout configuration rather than on connection refusal. Finally, answer quality under real inference was confirmed to be functional but was not measured, so the effect of team composition on the quality of the final answer remains open."),
   p("Relative to the reviewed literature, the contribution is narrow and deliberately so. No claim is made regarding the deployment of agents on Kubernetes, which the reviewed infrastructure work already addresses, nor regarding the protocols, which are consumed as specified. The claim concerns the step between a discovered set of agents and a working team, which the reviewed work leaves unspecified, and the demonstration that this step admits a measurable criterion beyond feasibility."),
 
   h1("Conclusions"),
@@ -378,13 +405,35 @@ const actions = [
     "SUPPLY MISSING SETUP DETAIL: Kubernetes distribution and version, container base image and size, the local model used for the end-to-end confirmation, and the corpus size in documents and words. Only the trial counts and results are currently stated.",
     "INSERT AUTHORSHIP: name, affiliation and supervisor as required by the departmental thesis format.",
     "CHECK CHAPTER NUMBERING against the rest of the thesis. Section headings here are unnumbered and may need to become 4.1, 4.2 and so on, with tables and figures renumbered to match.",
-    "OPTIONAL BUT ADVISED: run the mid-run withdrawal scenario, in which an agent is removed while a task is executing. Formation is recomputed once before execution, so the system does not currently accommodate it. It is the scenario formation is most obviously suited to, the Limitations section concedes it, and an examiner is likely to ask.",
+    "UNRESPONSIVE-AGENT CASE. Withdrawal by process removal is now tested. The remaining untested failure is an agent that stays reachable but stops responding, where detection depends on timeout configuration. Worth a short run if time permits, since the Limitations section names it.",
   ].map((t, i) =>
     new Paragraph({
       spacing: { after: 90, line: 220 },
       indent: { left: 360, hanging: 260 },
       children: [new TextRun({ text: `${i + 1}.  ${t}`, font: SERIF, size: SMALL })],
     })),
+];
+
+
+const withdrawalText = [
+  h2("Withdrawal during execution"),
+  p("Every scenario reported above alters the deployment before formation runs, which is the straightforward case: formation simply observes a different set of agents. The harder case is an agent withdrawn after the team has been formed and while it is being executed. Two conditions were compared. Under a fixed plan the team is computed once and followed, which is the behaviour described so far. Under re-formation, a failed call causes the coordinator to re-discover what is still running and re-form from the material already produced rather than from the beginning."),
+  p("Two cases were used, chosen because they should behave differently. In the first the withdrawn agent is the only one satisfying a requirement the task raised, so no recovery is possible and the question is only whether that is reported or merely crashed into. In the second a second agent satisfying the same requirement is also deployed, so recovery is possible and the conditions can separate. Results appear in Table 6 and Figure 3."),
+];
+
+const table6 = [
+  caption("Table 6. Outcome when an agent is withdrawn mid-execution."),
+  table([2300, 2300, 2650, 2650], [
+    ["Case", "Fixed plan", "Re-forming", "Recovered team"],
+    ["Sole satisfier withdrawn", "Aborted at the failed call", "Declined, naming the unsatisfiable requirement", "none exists"],
+    ["Alternative agent deployed", "Aborted at the failed call", "Recovered and completed", "compute \u2192 writer"],
+  ]),
+];
+
+const withdrawalText2 = [
+  p("Three things follow. Re-formation converts an abort into either a completed task or a stated reason, which is the same distinction observed between runtime and reported failure in the scenario results. Recovery itself, however, depends on capability-level redundancy rather than on the re-forming mechanism: in the second case an agent able to do the work was running and idle throughout, and the fixed plan failed only because it could not be revised to reach it."),
+  p("The third observation is the more interesting, and it qualifies the earlier precision result. Because task-aware formation admits an agent only when something requires it, every member of a formed team is load-bearing by construction. There are no optional members to lose. The precision that makes the team efficient is the same property that leaves it without slack, so any withdrawal from a formed team necessarily breaks a requirement. Redundancy must therefore be supplied by the deployment, through a second agent or a second replica, rather than expected from formation."),
+  p("Detection was immediate in all trials, at less than one hundredth of a second, because a withdrawn process refuses the connection outright. This figure should not be generalised: an agent that remains reachable but stops responding would not be detected until a timeout expired, and that case was not tested."),
 ];
 
 // =========================================================================
@@ -395,11 +444,15 @@ const doc = new Document({
     sec(ONE_COL, front),
     sec(TWO_COL, body1),
     sec(ONE_COL, table1),
-    sec(TWO_COL, body2),
+    sec(TWO_COL, body2a),
+    sec(ONE_COL, figureArch),
+    sec(TWO_COL, body2b),
     sec(ONE_COL, [...figure1, ...table2]),
     sec(TWO_COL, body3),
     sec(ONE_COL, table3),
-    sec(TWO_COL, [...body4, ...refs]),
+    sec(TWO_COL, [...body4a, ...withdrawalText]),
+    sec(ONE_COL, [...table6, ...figureWithdraw]),
+    sec(TWO_COL, [...withdrawalText2, ...body4b, ...refs]),
     sec(ONE_COL, actions),
   ],
 });

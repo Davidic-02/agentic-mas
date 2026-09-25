@@ -126,7 +126,7 @@ def form_team(
     become runnable until `conclusions` exists, which is already after the
     agents that produce it. So the rule needs no per-type bookkeeping.
     """
-    available = {start}
+    available = {start} if isinstance(start, str) else set(start)
     remaining = list(capabilities)
     team: list[str] = []
 
@@ -143,9 +143,10 @@ def form_team(
             progress = True
 
     unreachable = {c.agent for c in remaining}
+    began = {start} if isinstance(start, str) else set(start)
     return Plan(
         team=team,
-        produced=available - {start},
+        produced=available - began,
         reached_goal=goal in available,
         unreachable=unreachable,
     )
@@ -183,8 +184,13 @@ def form_team_targeted(
     by_name = {c.agent: c for c in capabilities}
     ordered = sorted(capabilities, key=lambda c: c.agent)
 
-    queue = deque([(frozenset({start}), ())])
-    seen = {frozenset({start}): {()}}
+    # `start` is normally the raw query type. It may instead be a set of
+    # types already produced, which is what lets a partially-executed run
+    # resume from where it stopped rather than beginning again.
+    begin = frozenset({start}) if isinstance(start, str) else frozenset(start)
+
+    queue = deque([(begin, ())])
+    seen = {begin: {()}}
     chosen: tuple[str, ...] | None = None
 
     while queue:
@@ -213,7 +219,7 @@ def form_team_targeted(
         covered = frozenset().union(
             *(c.satisfies for c in capabilities)
         ) if capabilities else frozenset()
-        partial = form_team(capabilities, start=start, goal=goal)
+        partial = form_team(capabilities, start=begin, goal=goal)
         return Plan(
             team=[],
             produced=partial.produced,
@@ -223,4 +229,4 @@ def form_team_targeted(
         )
 
     # Step 2: order the chosen set with the existing refiner-first rule.
-    return form_team([by_name[a] for a in chosen], start=start, goal=goal)
+    return form_team([by_name[a] for a in chosen], start=begin, goal=goal)

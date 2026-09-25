@@ -351,3 +351,49 @@ exactly measurable, which is why it was chosen, but it will not generalise
 to unusually phrased tasks. A model-based profiler is the natural successor
 and would require a different evaluation design, since composition would
 cease to be exact and would have to be sampled.
+
+---
+
+## 11. Withdrawal during execution
+
+Every scenario in section 10 changes the deployment *before* formation runs.
+This section tests the case section 9 conceded: an agent withdrawn *after*
+the team is formed, while it is being executed.
+
+`evaluation/withdrawal_eval.py` launches agents as separate processes, forms
+a team, begins executing it, and kills one agent's process immediately
+before that agent is called.
+
+| | Fixed plan | Re-forming |
+|---|---|---|
+| Sole satisfier withdrawn | aborted at the failed call | declined, naming the unsatisfiable requirement |
+| Alternative agent deployed | aborted at the failed call | **recovered: `compute -> writer`** |
+
+Re-formation required generalising `form_team_targeted` to begin from a set
+of already-produced types rather than from the raw query, so a run resumes
+from where it stopped. In the recovered case the research step is not
+repeated.
+
+### The finding
+
+Recovery depends on **capability-level redundancy**, not on the re-forming
+mechanism. In the second case an agent able to do the work was running and
+idle throughout; the fixed plan failed only because it could not be revised
+to reach it.
+
+More importantly, this qualifies the precision result. Because task-aware
+formation admits an agent only when something requires it, **every member of
+a formed team is load-bearing by construction** -- there are no optional
+members to lose. The precision that makes the team efficient is the same
+property that leaves it without slack. Redundancy has to come from the
+deployment, not from formation.
+
+An intended third case had to be abandoned: there is no such thing as
+withdrawing an *optional* member of a task-aware team, because no member is
+optional. That is itself the result.
+
+### Limitation
+
+Detection was immediate in all trials (<0.01 s) because a withdrawn process
+refuses the connection. An agent that remains reachable but stops responding
+would not be detected until a timeout expired, and was not tested.

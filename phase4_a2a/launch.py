@@ -7,7 +7,7 @@ import time
 import urllib.error
 import urllib.request
 
-PORTS = {"research": 8101, "analysis": 8102, "writer": 8103, "factcheck": 8104}
+PORTS = {"research": 8101, "analysis": 8102, "writer": 8103, "factcheck": 8104, "compute": 8105}
 
 
 def _card_url(port: int) -> str:

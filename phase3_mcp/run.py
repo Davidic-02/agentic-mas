@@ -34,6 +34,7 @@ TOOL_GRANTS = {
     "research": ["search_documents"],
     "analysis": ["calculate"],
     "factcheck": ["search_documents"],
+    "compute": ["calculate"],
     "writer": [],
 }
 
@@ -47,6 +48,7 @@ add new claims of your own and do not remove anything -- annotate only."""
 PROMPTS = {
     "research": RESEARCH_PROMPT,
     "factcheck": FACTCHECK_PROMPT,
+    "compute": ANALYSIS_PROMPT,
     "analysis": ANALYSIS_PROMPT,
     "writer": WRITER_PROMPT,
 }

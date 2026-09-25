@@ -69,6 +69,23 @@ SPECS = {
             )
         ],
     },
+    "compute": {
+        "description": (
+            "Performs numeric work over supplied material. Equivalent in "
+            "capability to the analysis agent; deployed to provide an "
+            "alternative satisfier for computation."
+        ),
+        "skills": [
+            (
+                "compute",
+                "Numeric computation",
+                "Carry out arithmetic over supplied material and state the "
+                "reasoning.",
+                ["computation", "consumes:findings", "produces:conclusions",
+                 "satisfies:computation"],
+            )
+        ],
+    },
     "writer": {
         "description": (
             "Turns findings and analysis into a clear, cited final answer. "

@@ -1,0 +1,5 @@
+case,condition,withdraw,required,planned,reformed,executed,completed,detect_s,outcome
+sole satisfier,fixed-plan,analysis,computation,research -> analysis -> writer,,1,False,0.00,aborted at analysis: call failed
+sole satisfier,reforming,analysis,computation,research -> analysis -> writer,(none),1,False,0.00,"reported: incomplete: no deployed agent satisfies ['computation'], which this task requires"
+alternative deployed,fixed-plan,analysis,computation,research -> analysis -> writer,,1,False,0.00,aborted at analysis: call failed
+alternative deployed,reforming,analysis,computation,research -> analysis -> writer,compute -> writer,3,True,0.00,recovered and completed
