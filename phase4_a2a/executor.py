@@ -5,6 +5,8 @@ back on the event queue. The Agent itself is untouched -- it does not know
 it is being driven over a network protocol.
 """
 
+import asyncio
+import os
 import uuid
 
 from a2a.server.agent_execution import AgentExecutor, RequestContext
@@ -29,6 +31,14 @@ class AgentExecutorAdapter(AgentExecutor):
         self.agent = agent
 
     async def execute(self, context: RequestContext, event_queue: EventQueue) -> None:
+        # AGENT_HANG_SECONDS simulates an agent that is up and reachable but
+        # not making progress. Its card endpoint keeps serving throughout,
+        # which is the whole point: every health signal this system has says
+        # the agent is fine.
+        hang = float(os.environ.get("AGENT_HANG_SECONDS", "0") or 0)
+        if hang:
+            await asyncio.sleep(hang)
+
         task = context.get_user_input()
         try:
             result = self.agent.run(task)

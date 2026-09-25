@@ -397,3 +397,50 @@ optional. That is itself the result.
 Detection was immediate in all trials (<0.01 s) because a withdrawn process
 refuses the connection. An agent that remains reachable but stops responding
 would not be detected until a timeout expired, and was not tested.
+
+---
+
+## 12. An agent that is reachable but not progressing
+
+Section 11 removes an agent's process, which is the benign failure: the
+connection is refused and every signal agrees within milliseconds. This
+section tests the case section 11 conceded.
+
+`evaluation/unresponsive_eval.py` configures one agent to accept a task and
+sleep indefinitely (`AGENT_HANG_SECONDS`), leaving its card endpoint
+untouched. Client timeout 8 s.
+
+| Case | Condition | Detected | Card serving | Outcome |
+|---|---|---|---|---|
+| Sole satisfier stalls | Fixed plan | 8.0 s | **yes** | aborted |
+| Sole satisfier stalls | Re-forming | 8.0 s | **yes** | declined, requirement named |
+| Alternative deployed | Fixed plan | 8.0 s | **yes** | aborted |
+| Alternative deployed | Re-forming | 8.0 s | **yes** | recovered: `compute -> writer` |
+
+### The finding
+
+**The card endpoint kept serving in all four trials while the agent did no
+work at all.** The readiness probe in `k8s/agents.yaml` fetches exactly that
+endpoint. So the platform's own health signal reported the agent ready
+throughout: the pod stayed in its Service, discovery kept returning it, and
+formation kept selecting it.
+
+Detection occurred at 8.0 s in every trial -- precisely the configured
+client timeout. Detection latency here is therefore **not a property of the
+system but a configuration choice**, and the 8 s figure means nothing beyond
+the value that produced it.
+
+A probe that fetches a capability card establishes that an agent can
+*describe itself*. That is strictly weaker than establishing it can do
+anything. Between an agent stalling and a caller's timeout expiring, every
+health signal in this system reports normality.
+
+Re-formation is indifferent to which failure mode occurred; only the delay
+before it is invoked differs.
+
+### Limitation
+
+Both execution-time failures are now tested. What remains is **partial
+failure**: an agent that answers promptly with a wrong or unusable result.
+No signal in this system registers that, and the multi-agent failure
+literature identifies it as the largest failure category.

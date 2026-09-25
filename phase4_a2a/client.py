@@ -30,8 +30,9 @@ class A2APeers:
             peers.ask("research", "find me the probe types")
     """
 
-    def __init__(self, urls: dict[str, str]) -> None:
+    def __init__(self, urls: dict[str, str], timeout: float = 120.0) -> None:
         self._urls = urls
+        self._timeout = timeout
         self._loop: asyncio.AbstractEventLoop | None = None
         self._clients: dict[str, Any] = {}
         self._ready = threading.Event()
@@ -60,7 +61,7 @@ class A2APeers:
     async def _serve(self) -> None:
         self._shutdown = asyncio.Event()
         try:
-            async with httpx.AsyncClient(timeout=120) as http:
+            async with httpx.AsyncClient(timeout=self._timeout) as http:
                 factory = ClientFactory(ClientConfig(httpx_client=http, streaming=False))
                 for name, url in self._urls.items():
                     # Discovery, in two explicit steps: read the agent's
@@ -92,7 +93,7 @@ class A2APeers:
             return f"error: no A2A connection to {name!r}"
         try:
             future = asyncio.run_coroutine_threadsafe(self._ask(name, task), self._loop)
-            return future.result(timeout=180)
+            return future.result(timeout=self._timeout + 15)
         except Exception as exc:
             return f"error: A2A call to {name!r} failed: {exc}"
 

@@ -1,0 +1,5 @@
+case,condition,hanging,planned,detect_s,card_alive,reformed,completed,outcome
+sole satisfier hangs,fixed-plan,analysis,research -> analysis -> writer,8.0,yes,,False,aborted at analysis after the timeout
+sole satisfier hangs,reforming,analysis,research -> analysis -> writer,8.0,yes,(none),False,"declined: incomplete: no deployed agent satisfies ['computation'], which this task requires"
+alternative deployed,fixed-plan,analysis,research -> analysis -> writer,8.0,yes,,False,aborted at analysis after the timeout
+alternative deployed,reforming,analysis,research -> analysis -> writer,8.0,yes,compute -> writer,True,recovered and completed

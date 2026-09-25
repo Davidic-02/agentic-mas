@@ -253,6 +253,9 @@ const figure = (file, w, h, capText) => [
 const figureArch = figure("figure_architecture.png", 668, 413,
   "Figure 1. System architecture. Agents are independently deployed workloads; A2A carries agent-to-agent traffic and MCP carries all tool access. The coordinator learns which agents exist by querying the cluster, not from its own source.");
 
+const figureFail = figure("figure_failure_modes.png", 668, 318,
+  "Figure 4. The two ways an agent fails, and what each is visible to. A withdrawn process is detected by every signal at once; an unresponsive one passes its readiness probe throughout and is detected only when the caller's timeout expires.");
+
 const figureWithdraw = figure("figure_withdrawal.png", 668, 340,
   "Figure 3. Withdrawal of an agent during execution, under a fixed plan and under re-formation. Recovery is possible only where a second agent satisfies the same requirement.");
 
@@ -341,7 +344,7 @@ const body4b = [
   p("The more useful discussion concerns the result that was not expected. The mechanism, as first implemented, was less precise than the arrangement it replaced. This was not an implementation defect but a property of the design: formation consulted the capability graph and nothing else, so an agent's eligibility was the whole of its claim to inclusion. Retaining that negative result was instructive, because the diagnosis it forced produced the final mechanism, and because it establishes that the adaptivity gain is not free."),
   p("A second observation deserves emphasis. Before the writer agent's declaration was loosened, arithmetic tasks succeeded under task-blind formation, but not because formation had determined that they required arithmetic. The writer required conclusions, only the analysis agent produced conclusions, and analysis was therefore unavoidable in every chain. The mechanism was working by an accident of how capabilities had been declared. This is worth stating plainly because it is a hazard specific to declaration-driven systems: a sufficiently constrained declaration can conceal the absence of a decision procedure, and the concealment is discovered only when the constraint is relaxed."),
   p("The finding with the broadest implication is that completion is an inadequate measure for these systems. Under withdrawal of the analysis agent, the condition completing more tasks is the condition behaving worse. This aligns with the multi-agent failure literature, in which the largest failure category concerns verification rather than execution, and systems report success while returning unreliable results [ref]. Formation offers a partial defence not available to a static team: because membership is decided before execution and against a stated requirement, a task whose requirements cannot be met is identifiable in advance rather than after the fact."),
-  p("Several limitations bound these results. The task profiler is a keyword matcher, chosen so that formation remains free of inference and therefore exactly measurable; it will not generalise to unusually phrased tasks, and a model-based profiler is the natural successor, though it would require a different evaluation design, since composition would cease to be exact and would have to be sampled. The task set comprises fourteen tasks over a four-document corpus. It exercises both requirement markers and separates the conditions, but it does not characterise the profiler's coverage over arbitrary phrasing. Requirement markers are declared by the author of each agent, so a miscategorised agent produces a miscategorised team, and nothing verifies a declaration against behaviour. Withdrawal during execution was tested and is reported above, but only for a process removed outright; an agent that remains reachable while failing to respond was not examined, and detection in that case would depend on timeout configuration rather than on connection refusal. Finally, answer quality under real inference was confirmed to be functional but was not measured, so the effect of team composition on the quality of the final answer remains open."),
+  p("Several limitations bound these results. The task profiler is a keyword matcher, chosen so that formation remains free of inference and therefore exactly measurable; it will not generalise to unusually phrased tasks, and a model-based profiler is the natural successor, though it would require a different evaluation design, since composition would cease to be exact and would have to be sampled. The task set comprises fourteen tasks over a four-document corpus. It exercises both requirement markers and separates the conditions, but it does not characterise the profiler's coverage over arbitrary phrasing. Requirement markers are declared by the author of each agent, so a miscategorised agent produces a miscategorised team, and nothing verifies a declaration against behaviour. Both failure modes during execution were tested. What remains untested is a partial failure, in which an agent returns promptly but returns something wrong; no signal in this system would register that at all, and the multi-agent failure literature identifies it as the largest failure category. Finally, answer quality under real inference was confirmed to be functional but was not measured, so the effect of team composition on the quality of the final answer remains open."),
   p("Relative to the reviewed literature, the contribution is narrow and deliberately so. No claim is made regarding the deployment of agents on Kubernetes, which the reviewed infrastructure work already addresses, nor regarding the protocols, which are consumed as specified. The claim concerns the step between a discovered set of agents and a working team, which the reviewed work leaves unspecified, and the demonstration that this step admits a measurable criterion beyond feasibility."),
 
   h1("Conclusions"),
@@ -405,7 +408,7 @@ const actions = [
     "SUPPLY MISSING SETUP DETAIL: Kubernetes distribution and version, container base image and size, the local model used for the end-to-end confirmation, and the corpus size in documents and words. Only the trial counts and results are currently stated.",
     "INSERT AUTHORSHIP: name, affiliation and supervisor as required by the departmental thesis format.",
     "CHECK CHAPTER NUMBERING against the rest of the thesis. Section headings here are unnumbered and may need to become 4.1, 4.2 and so on, with tables and figures renumbered to match.",
-    "UNRESPONSIVE-AGENT CASE. Withdrawal by process removal is now tested. The remaining untested failure is an agent that stays reachable but stops responding, where detection depends on timeout configuration. Worth a short run if time permits, since the Limitations section names it.",
+    "PARTIAL-FAILURE CASE. Both execution-time failures are now tested. The remaining one is an agent that answers promptly with a wrong or unusable result, which no signal in this system registers. It is named in the Limitations and is the natural next piece of work; do not claim it was covered.",
   ].map((t, i) =>
     new Paragraph({
       spacing: { after: 90, line: 220 },
@@ -436,6 +439,25 @@ const withdrawalText2 = [
   p("Detection was immediate in all trials, at less than one hundredth of a second, because a withdrawn process refuses the connection outright. This figure should not be generalised: an agent that remains reachable but stops responding would not be detected until a timeout expired, and that case was not tested."),
 ];
 
+const unresponsiveText = [
+  h2("An agent that is reachable but not progressing"),
+  p("Withdrawal by removal is the benign failure: the connection is refused and every signal agrees at once. The harder case is an agent whose process is still running and still serving its capability card, but which accepts a task and never returns it. This was tested by configuring one agent to accept work and sleep indefinitely, leaving its card endpoint untouched, with the client timeout set to eight seconds."),
+  p("The result is reported in Table 7 and drawn in Figure 4. In all four trials the agent's card endpoint continued to serve while the agent performed no work whatsoever. The readiness probe defined in the deployment manifests fetches exactly that endpoint, so the platform's own health signal reported the agent as ready throughout, the pod was retained in its Service, discovery continued to return it, and formation continued to select it. Detection occurred at 8.0 seconds in every trial, which is to say at precisely the timeout configured by the caller and not a moment sooner."),
+  p("Two consequences follow. The first is that detection latency in this failure mode is not a property of the system at all but a configuration choice, and the eight-second figure reported here carries no meaning beyond the value that produced it. The second is more uncomfortable: a probe that fetches a capability card establishes that an agent can describe itself, which is a strictly weaker claim than that it can do anything. Between the moment an agent stalls and the moment a caller's timeout expires, every health signal available to this system reports normality."),
+  p("Re-formation behaves as it does under withdrawal once the timeout has expired. Where a second agent satisfies the same requirement the run recovers, re-forming as compute to writer from the material already held; where none does, the task is declined with the unsatisfiable requirement named. The mechanism is therefore indifferent to which of the two failure modes occurred, and only the delay before it is invoked differs."),
+];
+
+const table7 = [
+  caption("Table 7. Response to an agent that remains reachable but stops progressing. Client timeout 8 s."),
+  table([2500, 1500, 1600, 1800, 2500], [
+    ["Case", "Condition", "Detected after", "Card still serving", "Outcome"],
+    ["Sole satisfier stalls", "Fixed plan", "8.0 s", "yes", "Aborted after the timeout"],
+    ["Sole satisfier stalls", "Re-forming", "8.0 s", "yes", "Declined, requirement named"],
+    ["Alternative deployed", "Fixed plan", "8.0 s", "yes", "Aborted after the timeout"],
+    ["Alternative deployed", "Re-forming", "8.0 s", "yes", "Recovered: compute \u2192 writer"],
+  ]),
+];
+
 // =========================================================================
 const doc = new Document({
   creator: "David Adekoya",
@@ -452,7 +474,9 @@ const doc = new Document({
     sec(ONE_COL, table3),
     sec(TWO_COL, [...body4a, ...withdrawalText]),
     sec(ONE_COL, [...table6, ...figureWithdraw]),
-    sec(TWO_COL, [...withdrawalText2, ...body4b, ...refs]),
+    sec(TWO_COL, [...withdrawalText2, ...unresponsiveText]),
+    sec(ONE_COL, [...table7, ...figureFail]),
+    sec(TWO_COL, [...body4b, ...refs]),
     sec(ONE_COL, actions),
   ],
 });

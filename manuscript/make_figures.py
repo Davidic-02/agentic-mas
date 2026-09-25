@@ -302,10 +302,80 @@ def withdrawal() -> str:
 
 
 # ==========================================================================
+# Figure 4 -- two ways an agent fails
+# ==========================================================================
+def failure_modes() -> str:
+    W, H = 1180, 560
+    o = []
+
+    o.append(f'<line x1="590" y1="30" x2="590" y2="472" stroke="{BORDER}" '
+             f'stroke-width="1" stroke-dasharray="4 5"/>')
+
+    def column(ox, title, sub, agent_fill, agent_stroke, agent_label, rows, verdict):
+        q = []
+        q.append(eyebrow(ox, 48, title, PRIMARY))
+        q.append(txt(ox, 70, sub, 12, MUTED))
+
+        # the agent
+        q.append(f'<rect x="{ox}" y="92" width="196" height="52" rx="9" '
+                 f'fill="{agent_fill}" stroke="{agent_stroke}" stroke-width="1.4" '
+                 f'stroke-dasharray="4 3"/>')
+        q.append(txt(ox + 98, 117, "analysis", 13.5, agent_stroke, "bold", "middle"))
+        q.append(txt(ox + 98, 135, agent_label, 10.8, agent_stroke, anchor="middle"))
+
+        # signal rows
+        for i, (label, value, tone) in enumerate(rows):
+            y = 180 + i * 52
+            fg, bg, bd = tone
+            q.append(f'<rect x="{ox}" y="{y}" width="492" height="42" rx="8" '
+                     f'fill="{bg}" stroke="{bd}" stroke-width="1"/>')
+            q.append(txt(ox + 16, y + 26, label, 12.2, INK))
+            q.append(txt(ox + 476, y + 26, value, 12.2, fg, "bold", anchor="end"))
+
+        q.append(f'<rect x="{ox}" y="392" width="492" height="56" rx="8" '
+                 f'fill="{TINT}" stroke="{BORDER}" stroke-width="1"/>')
+        q.append(txt(ox + 16, 416, verdict[0], 12.4, PRIMARY, "bold"))
+        q.append(txt(ox + 16, 436, verdict[1], 11.8, INK))
+        return q
+
+    neutral = (MUTED, "#FFFFFF", BORDER)
+    o += column(
+        50, "process withdrawn", "the container is killed",
+        BAD_BG, BAD_FG, "process gone",
+        [("TCP connection", "refused", (BAD_FG, BAD_BG, BAD_BD)),
+         ("Readiness probe (fetches the card)", "fails", (BAD_FG, BAD_BG, BAD_BD)),
+         ("Kubernetes response", "pod removed from service", (OK_FG, OK_BG, OK_BD)),
+         ("Detected after", "< 0.01 s".replace(chr(60), "&lt;"), (OK_FG, OK_BG, OK_BD))],
+        ("The failure is visible to the platform.",
+         "Every signal agrees, and the caller learns immediately."))
+    o.append(cross(148, 160))
+
+    o += column(
+        632, "process unresponsive", "the container runs but stops progressing",
+        WARN_BG, WARN_FG, "alive, not progressing",
+        [("TCP connection", "accepted", (OK_FG, OK_BG, OK_BD)),
+         ("Readiness probe (fetches the card)", "passes", (BAD_FG, BAD_BG, BAD_BD)),
+         ("Kubernetes response", "pod kept in service", (BAD_FG, BAD_BG, BAD_BD)),
+         ("Detected after", "the caller's timeout", (WARN_FG, WARN_BG, WARN_BD))],
+        ("The failure is invisible to the platform.",
+         "Discovery returns it, formation selects it, no work is done."))
+
+    o.append(f'<rect x="28" y="472" width="1124" height="68" rx="10" '
+             f'fill="{WARN_BG}" stroke="{WARN_BD}" stroke-width="1"/>')
+    for i, s in enumerate([
+        "A probe that fetches an agent's capability card asks whether the agent can describe itself, not whether it is doing any work. In the",
+        "right-hand column every health signal available to the system reports normality throughout. Detection is not a property the system",
+        "has; it is a timeout the caller chose, and until it expires the stalled agent remains a candidate for selection."]):
+        o.append(txt(50, 498 + i * 19, s, 12.2, INK))
+    return svg(W, H, "\n  ".join(o))
+
+
+# ==========================================================================
 if __name__ == "__main__":
     jobs = [("figure_architecture", architecture(), 2360, 1460),
             ("figure_formation", formation(), 2360, 1380),
-            ("figure_withdrawal", withdrawal(), 2360, 1200)]
+            ("figure_withdrawal", withdrawal(), 2360, 1200),
+            ("figure_failure_modes", failure_modes(), 2360, 1120)]
     for name, src, pw, ph in jobs:
         (HERE / f"{name}.svg").write_text(src)
         cairosvg.svg2png(url=str(HERE / f"{name}.svg"),
