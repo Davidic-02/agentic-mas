@@ -28,75 +28,68 @@
     </marker>
   </defs>
   <rect width="1180" height="730" fill="#FDFEFF"/>
-  <rect x="468" y="24" width="244" height="40" rx="20" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
-  <text x="590" y="50" font-size="13.5" fill="#0F2740" font-weight="normal" text-anchor="middle">user question</text>
-  <line x1="590" y1="64" x2="590" y2="92" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
-  <rect x="300" y="98" width="580" height="92" rx="11" fill="url(#gPrimary)" filter="url(#lift)"/>
-  <text x="590" y="128" font-size="17" fill="#FFFFFF" font-weight="bold" text-anchor="middle">coordinator</text>
-  <text x="590" y="152" font-size="12.5" fill="#C6DBEE" font-weight="normal" text-anchor="middle">discovers deployed agents · reads their cards</text>
-  <text x="590" y="172" font-size="12.5" fill="#C6DBEE" font-weight="normal" text-anchor="middle">profiles the task · derives the team and its order</text>
-  <line x1="300" y1="144" x2="212" y2="144" stroke="#2E74B5" stroke-width="1.4" stroke-dasharray="4 3" stroke-linecap="round" marker-end="url(#arw)"/>
-  <rect x="28" y="120" width="178" height="50" rx="9" fill="#F4F8FC" stroke="#BFD6EA" stroke-width="1.1" filter="url(#liftSoft)"/>
-  <text x="117" y="141" font-size="12.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">Kubernetes API</text>
-  <text x="117" y="158" font-size="11" fill="#7A8899" font-weight="normal" text-anchor="middle">list Services by label</text>
-  <rect x="28" y="212" width="1124" height="34" rx="8" fill="#F4F8FC" stroke="#D6E3F0" stroke-width="1"/>
-  <rect x="28" y="212" width="4" height="34" rx="2" fill="#1B4F80"/>
-  <text x="50" y="234" font-size="13" fill="#1B4F80" font-weight="bold">A2A</text>
-  <text x="96" y="234" font-size="12" fill="#7A8899" font-weight="normal">agent ↔ agent  ·  capability cards at a well-known endpoint  ·  tasks over JSON-RPC</text>
-  <rect x="34" y="272" width="212" height="88" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
-  <text x="140.0" y="300" font-size="14.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">research</text>
-  <text x="140.0" y="322" font-size="11.8" fill="#0F2740" font-weight="normal" text-anchor="middle">query → findings</text>
-  <text x="140.0" y="343" font-size="11" fill="#D6E3F0" font-weight="normal" text-anchor="middle">·</text>
-  <rect x="256" y="272" width="212" height="88" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
-  <text x="362.0" y="300" font-size="14.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">factcheck</text>
-  <text x="362.0" y="322" font-size="11.8" fill="#0F2740" font-weight="normal" text-anchor="middle">findings → findings</text>
-  <text x="362.0" y="343" font-size="11" fill="#3E8FD0" font-weight="normal" text-anchor="middle">satisfies verification</text>
-  <rect x="478" y="272" width="212" height="88" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
-  <text x="584.0" y="300" font-size="14.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">analysis</text>
-  <text x="584.0" y="322" font-size="11.8" fill="#0F2740" font-weight="normal" text-anchor="middle">findings → conclusions</text>
-  <text x="584.0" y="343" font-size="11" fill="#3E8FD0" font-weight="normal" text-anchor="middle">satisfies computation</text>
-  <rect x="700" y="272" width="212" height="88" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
-  <text x="806.0" y="300" font-size="14.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">compute</text>
-  <text x="806.0" y="322" font-size="11.8" fill="#0F2740" font-weight="normal" text-anchor="middle">findings → conclusions</text>
-  <text x="806.0" y="343" font-size="11" fill="#3E8FD0" font-weight="normal" text-anchor="middle">satisfies computation</text>
-  <rect x="922" y="272" width="212" height="88" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
-  <text x="1028.0" y="300" font-size="14.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">writer</text>
-  <text x="1028.0" y="322" font-size="11.8" fill="#0F2740" font-weight="normal" text-anchor="middle">findings → report</text>
-  <text x="1028.0" y="343" font-size="11" fill="#D6E3F0" font-weight="normal" text-anchor="middle">·</text>
-  <line x1="140.0" y1="360" x2="140.0" y2="392" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
-  <line x1="362.0" y1="360" x2="362.0" y2="392" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
-  <line x1="584.0" y1="360" x2="584.0" y2="392" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
-  <line x1="806.0" y1="360" x2="806.0" y2="392" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
-  <line x1="1028.0" y1="360" x2="1028.0" y2="392" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
-  <rect x="28" y="392" width="1124" height="34" rx="8" fill="#F4F8FC" stroke="#D6E3F0" stroke-width="1"/>
-  <rect x="28" y="392" width="4" height="34" rx="2" fill="#1B4F80"/>
-  <text x="50" y="414" font-size="13" fill="#1B4F80" font-weight="bold">MCP</text>
-  <text x="96" y="414" font-size="12" fill="#7A8899" font-weight="normal">agent ↔ tool  ·  each agent discovers the available tools from the server at start-up</text>
-  <line x1="590" y1="426" x2="590" y2="450" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
-  <rect x="378" y="456" width="424" height="80" rx="11" fill="url(#gAccent)" filter="url(#lift)"/>
-  <text x="590" y="484" font-size="15" fill="#FFFFFF" font-weight="bold" text-anchor="middle">MCP server</text>
-  <text x="590" y="506" font-size="12.2" fill="#DCEBF8" font-weight="normal" text-anchor="middle">search_documents  ·  calculate</text>
-  <text x="590" y="525" font-size="11" fill="#B9D4EC" font-weight="normal" text-anchor="middle">no agent imports a tool function directly</text>
-  <line x1="590" y1="536" x2="590" y2="562" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
-  <rect x="452" y="568" width="276" height="38" rx="19" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
-  <text x="590" y="592" font-size="12.5" fill="#0F2740" font-weight="normal" text-anchor="middle">document corpus</text>
-  <rect x="28" y="632" width="1124" height="76" rx="10" fill="#F4F8FC" stroke="#D6E3F0" stroke-width="1"/>
-  <rect x="28" y="632" width="4" height="76" rx="2" fill="#1B4F80"/>
-  <text x="50" y="656" font-size="10.5" fill="#1B4F80" font-weight="bold" letter-spacing="1.3">CLOUD-NATIVE LAYER</text>
-  <text x="196" y="656" font-size="12" fill="#7A8899" font-weight="normal">every agent above is an independently deployed workload</text>
-  <rect x="50" y="666" width="208" height="32" rx="7" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1"/>
-  <text x="154.0" y="680" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">Deployment</text>
-  <text x="154.0" y="693" font-size="10.5" fill="#7A8899" font-weight="normal" text-anchor="middle">one per agent role</text>
-  <rect x="268" y="666" width="208" height="32" rx="7" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1"/>
-  <text x="372.0" y="680" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">Service</text>
-  <text x="372.0" y="693" font-size="10.5" fill="#7A8899" font-weight="normal" text-anchor="middle">stable, balanced</text>
-  <rect x="486" y="666" width="208" height="32" rx="7" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1"/>
-  <text x="590.0" y="680" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">Readiness probe</text>
-  <text x="590.0" y="693" font-size="10.5" fill="#7A8899" font-weight="normal" text-anchor="middle">fetches the agent card</text>
-  <rect x="704" y="666" width="208" height="32" rx="7" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1"/>
-  <text x="808.0" y="680" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">Replicas</text>
-  <text x="808.0" y="693" font-size="10.5" fill="#7A8899" font-weight="normal" text-anchor="middle">scaled per agent</text>
-  <rect x="922" y="666" width="208" height="32" rx="7" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1"/>
-  <text x="1026.0" y="680" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">Label</text>
-  <text x="1026.0" y="693" font-size="10.5" fill="#7A8899" font-weight="normal" text-anchor="middle">a2a.agent/enabled</text>
+  <text x="50" y="44" font-size="10.5" fill="#1B4F80" font-weight="bold" letter-spacing="1.3">TASK-AWARE RUNTIME FORMATION</text>
+  <text x="298" y="44" font-size="12" fill="#7A8899" font-weight="normal">workflow from task text to execution or explicit decline</text>
+  <rect x="34" y="92" width="172" height="94" rx="10" fill="url(#gPrimary)" filter="url(#lift)"/>
+  <text x="120.0" y="122" font-size="12.7" fill="#FFFFFF" font-weight="bold" text-anchor="middle">task text</text>
+  <text x="120.0" y="145" font-size="11" fill="#DCEBF8" font-weight="normal" text-anchor="middle">natural-language query</text>
+  <text x="120.0" y="164" font-size="11" fill="#DCEBF8" font-weight="normal" text-anchor="middle">arrives at coordinator</text>
+  <line x1="210" y1="139.0" x2="216" y2="139.0" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="220" y="92" width="172" height="94" rx="10" fill="url(#gAccent)" filter="url(#lift)"/>
+  <text x="306.0" y="122" font-size="12.7" fill="#FFFFFF" font-weight="bold" text-anchor="middle">requirement profiling</text>
+  <text x="306.0" y="145" font-size="11" fill="#DCEBF8" font-weight="normal" text-anchor="middle">keyword profiler maps</text>
+  <text x="306.0" y="164" font-size="11" fill="#DCEBF8" font-weight="normal" text-anchor="middle">task to markers R</text>
+  <line x1="396" y1="139.0" x2="402" y2="139.0" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="406" y="92" width="172" height="94" rx="10" fill="url(#gPrimary)" filter="url(#lift)"/>
+  <text x="492.0" y="122" font-size="12.7" fill="#FFFFFF" font-weight="bold" text-anchor="middle">capability discovery</text>
+  <text x="492.0" y="145" font-size="11" fill="#DCEBF8" font-weight="normal" text-anchor="middle">list deployed agents</text>
+  <text x="492.0" y="164" font-size="11" fill="#DCEBF8" font-weight="normal" text-anchor="middle">and read A2A cards</text>
+  <line x1="582" y1="139.0" x2="588" y2="139.0" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="592" y="92" width="172" height="94" rx="10" fill="url(#gAccent)" filter="url(#lift)"/>
+  <text x="678.0" y="122" font-size="12.7" fill="#FFFFFF" font-weight="bold" text-anchor="middle">candidate-team search</text>
+  <text x="678.0" y="145" font-size="11" fill="#DCEBF8" font-weight="normal" text-anchor="middle">minimum-cardinality set</text>
+  <text x="678.0" y="164" font-size="11" fill="#DCEBF8" font-weight="normal" text-anchor="middle">covering goal and R</text>
+  <line x1="768" y1="139.0" x2="774" y2="139.0" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="778" y="92" width="172" height="94" rx="10" fill="url(#gPrimary)" filter="url(#lift)"/>
+  <text x="864.0" y="122" font-size="12.7" fill="#FFFFFF" font-weight="bold" text-anchor="middle">ordering</text>
+  <text x="864.0" y="145" font-size="11" fill="#DCEBF8" font-weight="normal" text-anchor="middle">prefer refiners before</text>
+  <text x="864.0" y="164" font-size="11" fill="#DCEBF8" font-weight="normal" text-anchor="middle">transformers for stability</text>
+  <line x1="954" y1="139.0" x2="960" y2="139.0" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="964" y="92" width="172" height="94" rx="10" fill="url(#gAccent)" filter="url(#lift)"/>
+  <text x="1050.0" y="122" font-size="12.7" fill="#FFFFFF" font-weight="bold" text-anchor="middle">decision</text>
+  <text x="1050.0" y="145" font-size="11" fill="#DCEBF8" font-weight="normal" text-anchor="middle">execute formed team</text>
+  <text x="1050.0" y="164" font-size="11" fill="#DCEBF8" font-weight="normal" text-anchor="middle">or report missing capability</text>
+  <rect x="34" y="224" width="1118" height="72" rx="8" fill="#F4F8FC" stroke="#D6E3F0" stroke-width="1.1"/>
+  <text x="50" y="248" font-size="12.5" fill="#1B4F80" font-weight="bold">optimisation target</text>
+  <text x="50" y="268" font-size="11.8" fill="#0F2740" font-weight="normal">T* = arg min_T |T|  subject to  goal ∈ A(T)  and  R ⊆ ⋃_{a ∈ T} S_a</text>
+  <text x="50" y="285" font-size="11.8" fill="#0F2740" font-weight="normal">A task is attempted only when both reachability and requirement coverage hold.</text>
+  <rect x="34" y="324" width="1118" height="154" rx="10" fill="#F4F8FC" stroke="#D6E3F0" stroke-width="1"/>
+  <text x="56" y="350" font-size="10.5" fill="#1B4F80" font-weight="bold" letter-spacing="1.3">COMPARISON BASELINE</text>
+  <text x="56" y="378" font-size="11.8" fill="#1B4F80" font-weight="bold">static composition</text>
+  <text x="268" y="378" font-size="11.5" fill="#0F2740" font-weight="normal">team hardcoded in source</text>
+  <text x="652" y="378" font-size="11.5" fill="#B3261E" font-weight="normal">requires edits when deployment changes</text>
+  <text x="56" y="408" font-size="11.8" fill="#1B4F80" font-weight="bold">task-blind formation</text>
+  <text x="268" y="408" font-size="11.5" fill="#0F2740" font-weight="normal">team from eligibility only</text>
+  <text x="652" y="408" font-size="11.5" fill="#8A6100" font-weight="normal">recruits unnecessary agents</text>
+  <text x="56" y="438" font-size="11.8" fill="#1B4F80" font-weight="bold">task-aware formation</text>
+  <text x="268" y="438" font-size="11.5" fill="#0F2740" font-weight="normal">team from need plus marker coverage</text>
+  <text x="652" y="438" font-size="11.5" fill="#1E7A46" font-weight="normal">reports impossibility explicitly</text>
+  <rect x="34" y="506" width="1118" height="192" rx="10" fill="#FFF9EC" stroke="#E8D3A0" stroke-width="1"/>
+  <text x="56" y="532" font-size="10.5" fill="#1B4F80" font-weight="bold" letter-spacing="1.3">FAILURE HANDLING IN EXECUTION</text>
+  <rect x="76" y="548" width="138" height="48" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="145" y="577" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">discovery</text>
+  <line x1="220" y1="572" x2="230" y2="572" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="236" y="548" width="138" height="48" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="305" y="577" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">execution</text>
+  <line x1="380" y1="572" x2="390" y2="572" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="396" y="548" width="226" height="48" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="509" y="577" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">withdrawal / timeout detection</text>
+  <line x1="628" y1="572" x2="640" y2="572" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="646" y="548" width="138" height="48" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="715" y="577" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">re-formation</text>
+  <line x1="790" y1="572" x2="800" y2="572" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="806" y="548" width="138" height="48" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="875" y="577" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">recover or decline</text>
+  <text x="56" y="624" font-size="11.5" fill="#0F2740" font-weight="normal">withdrawn process: immediate refusal; stalled process: detected at caller timeout</text>
+  <text x="56" y="646" font-size="11.5" fill="#0F2740" font-weight="normal">re-formation resumes from produced material, then either recovers with redundancy or declines with requirement named</text>
 </svg>

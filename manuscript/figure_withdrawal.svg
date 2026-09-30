@@ -28,80 +28,42 @@
     </marker>
   </defs>
   <rect width="1180" height="600" fill="#FDFEFF"/>
-  <text x="414" y="40" font-size="10.5" fill="#1B4F80" font-weight="bold" letter-spacing="1.3">FIXED PLAN</text>
-  <text x="414" y="60" font-size="11.8" fill="#7A8899" font-weight="normal" text-anchor="middle">computed once, then followed</text>
-  <text x="852" y="40" font-size="10.5" fill="#1B4F80" font-weight="bold" letter-spacing="1.3">RE-FORMING</text>
-  <text x="852" y="60" font-size="11.8" fill="#7A8899" font-weight="normal" text-anchor="middle">re-derived from what remains</text>
-  <line x1="196" y1="76" x2="1152" y2="76" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
-  <line x1="634" y1="76" x2="634" y2="578" stroke="#D6E3F0" stroke-width="1" stroke-dasharray="4 5"/>
-  <text x="32" y="136" font-size="10.5" fill="#1B4F80" font-weight="bold" letter-spacing="1.3">CASE 1</text>
-  <text x="32" y="160" font-size="12.3" fill="#0F2740" font-weight="normal">withdrawn agent is the</text>
-  <text x="32" y="178" font-size="12.3" fill="#0F2740" font-weight="normal">only satisfier of a</text>
-  <text x="32" y="196" font-size="12.3" fill="#0F2740" font-weight="normal">raised requirement</text>
-  <text x="32" y="232" font-size="11" fill="#7A8899" font-weight="normal">deployed: research, factcheck,</text>
-  <text x="32" y="247" font-size="11" fill="#7A8899" font-weight="normal">analysis, writer</text>
-  <rect x="210" y="104" width="118" height="40" rx="9" fill="url(#gPrimary)" filter="url(#lift)"/>
-  <text x="269.0" y="129" font-size="12.8" fill="#FFFFFF" font-weight="bold" text-anchor="middle">research</text>
-  <rect x="362" y="104" width="118" height="40" rx="9" fill="#FDF3F2" stroke="#B3261E" stroke-width="1.3" stroke-dasharray="4 3"/>
-  <text x="421.0" y="129" font-size="12.5" fill="#B3261E" font-weight="normal" text-anchor="middle">analysis</text>
-  <g stroke="#B3261E" stroke-width="2.1" stroke-linecap="round"><line x1="414.5" y1="155.5" x2="427.5" y2="168.5"/><line x1="414.5" y1="168.5" x2="427.5" y2="155.5"/></g>
-  <rect x="514" y="104" width="118" height="40" rx="9" fill="none" stroke="#D6E3F0" stroke-width="1.2" stroke-dasharray="4 4"/>
-  <text x="573.0" y="129" font-size="12.5" fill="#7A8899" font-weight="normal" text-anchor="middle">writer</text>
-  <line x1="328" y1="124" x2="358" y2="124" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
-  <line x1="480" y1="124" x2="510" y2="124" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
-  <rect x="210" y="186" width="396" height="74" rx="8" fill="#FDF3F2" stroke="#EFC6C2" stroke-width="1.1"/>
-  <text x="226" y="210" font-size="12.5" fill="#B3261E" font-weight="bold">aborted at analysis</text>
-  <text x="226" y="230" font-size="11.8" fill="#0F2740" font-weight="normal">the call fails; execution stops with no answer</text>
-  <text x="226" y="247" font-size="11.8" fill="#0F2740" font-weight="normal">and no statement of what went wrong</text>
-  <rect x="658" y="104" width="118" height="40" rx="9" fill="url(#gPrimary)" filter="url(#lift)"/>
-  <text x="717.0" y="129" font-size="12.8" fill="#FFFFFF" font-weight="bold" text-anchor="middle">research</text>
-  <rect x="810" y="104" width="118" height="40" rx="9" fill="#FDF3F2" stroke="#B3261E" stroke-width="1.3" stroke-dasharray="4 3"/>
-  <text x="869.0" y="129" font-size="12.5" fill="#B3261E" font-weight="normal" text-anchor="middle">analysis</text>
-  <g stroke="#B3261E" stroke-width="2.1" stroke-linecap="round"><line x1="862.5" y1="155.5" x2="875.5" y2="168.5"/><line x1="862.5" y1="168.5" x2="875.5" y2="155.5"/></g>
-  <line x1="776" y1="124" x2="806" y2="124" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
-  <text x="940" y="128" font-size="12" fill="#7A8899" font-weight="normal">re-form → no path exists</text>
-  <rect x="658" y="186" width="494" height="74" rx="8" fill="#FFF9EC" stroke="#E8D3A0" stroke-width="1.1"/>
-  <text x="674" y="210" font-size="12.5" fill="#8A6100" font-weight="bold">declined, not attempted</text>
-  <text x="674" y="230" font-size="11.8" fill="#0F2740" font-weight="normal">“no deployed agent satisfies [computation],</text>
-  <text x="674" y="247" font-size="11.8" fill="#0F2740" font-weight="normal">which this task requires”</text>
-  <line x1="196" y1="288" x2="1152" y2="288" stroke="#EAF0F6" stroke-width="1.4" stroke-linecap="round"/>
-  <text x="32" y="346" font-size="10.5" fill="#1B4F80" font-weight="bold" letter-spacing="1.3">CASE 2</text>
-  <text x="32" y="370" font-size="12.3" fill="#0F2740" font-weight="normal">a second agent</text>
-  <text x="32" y="388" font-size="12.3" fill="#0F2740" font-weight="normal">satisfies the same</text>
-  <text x="32" y="406" font-size="12.3" fill="#0F2740" font-weight="normal">requirement</text>
-  <text x="32" y="442" font-size="11" fill="#7A8899" font-weight="normal">deployed: as above,</text>
-  <text x="32" y="457" font-size="11" fill="#7A8899" font-weight="normal">plus compute</text>
-  <rect x="210" y="314" width="118" height="40" rx="9" fill="url(#gPrimary)" filter="url(#lift)"/>
-  <text x="269.0" y="339" font-size="12.8" fill="#FFFFFF" font-weight="bold" text-anchor="middle">research</text>
-  <rect x="362" y="314" width="118" height="40" rx="9" fill="#FDF3F2" stroke="#B3261E" stroke-width="1.3" stroke-dasharray="4 3"/>
-  <text x="421.0" y="339" font-size="12.5" fill="#B3261E" font-weight="normal" text-anchor="middle">analysis</text>
-  <g stroke="#B3261E" stroke-width="2.1" stroke-linecap="round"><line x1="414.5" y1="365.5" x2="427.5" y2="378.5"/><line x1="414.5" y1="378.5" x2="427.5" y2="365.5"/></g>
-  <rect x="514" y="314" width="118" height="40" rx="9" fill="none" stroke="#D6E3F0" stroke-width="1.2" stroke-dasharray="4 4"/>
-  <text x="573.0" y="339" font-size="12.5" fill="#7A8899" font-weight="normal" text-anchor="middle">writer</text>
-  <line x1="328" y1="334" x2="358" y2="334" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
-  <line x1="480" y1="334" x2="510" y2="334" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
-  <rect x="210" y="396" width="396" height="74" rx="8" fill="#FDF3F2" stroke="#EFC6C2" stroke-width="1.1"/>
-  <text x="226" y="420" font-size="12.5" fill="#B3261E" font-weight="bold">aborted at analysis</text>
-  <text x="226" y="440" font-size="11.8" fill="#0F2740" font-weight="normal">an agent able to do the work is running and</text>
-  <text x="226" y="457" font-size="11.8" fill="#0F2740" font-weight="normal">idle, but the plan cannot be revised to reach it</text>
-  <rect x="658" y="314" width="118" height="40" rx="9" fill="url(#gPrimary)" filter="url(#lift)"/>
-  <text x="717.0" y="339" font-size="12.8" fill="#FFFFFF" font-weight="bold" text-anchor="middle">research</text>
-  <rect x="810" y="314" width="118" height="40" rx="9" fill="#FDF3F2" stroke="#B3261E" stroke-width="1.3" stroke-dasharray="4 3"/>
-  <text x="869.0" y="339" font-size="12.5" fill="#B3261E" font-weight="normal" text-anchor="middle">analysis</text>
-  <g stroke="#B3261E" stroke-width="2.1" stroke-linecap="round"><line x1="862.5" y1="365.5" x2="875.5" y2="378.5"/><line x1="862.5" y1="378.5" x2="875.5" y2="365.5"/></g>
-  <line x1="776" y1="334" x2="806" y2="334" stroke="#D6E3F0" stroke-width="1.4" stroke-linecap="round"/>
-  <path d="M932,330 C946,330 942,306 956,306" fill="none" stroke="#2E74B5" stroke-width="1.6" stroke-linecap="round" marker-end="url(#arw)"/>
-  <rect x="968" y="286" width="96" height="40" rx="9" fill="url(#gAccent)" filter="url(#lift)"/>
-  <text x="1016" y="311" font-size="12.5" fill="#FFFFFF" font-weight="bold" text-anchor="middle">compute</text>
-  <line x1="1064" y1="306" x2="1082" y2="306" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
-  <rect x="1088" y="286" width="64" height="40" rx="9" fill="url(#gPrimary)" filter="url(#lift)"/>
-  <text x="1120" y="311" font-size="12.5" fill="#FFFFFF" font-weight="bold" text-anchor="middle">writer</text>
-  <rect x="658" y="396" width="494" height="74" rx="8" fill="#EFF7F1" stroke="#B9DCC5" stroke-width="1.1"/>
-  <text x="674" y="420" font-size="12.5" fill="#1E7A46" font-weight="bold">recovered and completed</text>
-  <text x="674" y="440" font-size="11.8" fill="#0F2740" font-weight="normal">re-formed as compute → writer; the research step</text>
-  <text x="674" y="457" font-size="11.8" fill="#0F2740" font-weight="normal">is not repeated — formation resumes from what is held</text>
-  <rect x="28" y="496" width="1124" height="82" rx="10" fill="#F4F8FC" stroke="#D6E3F0" stroke-width="1"/>
-  <text x="50" y="522" font-size="12.3" fill="#0F2740" font-weight="normal">Recovery depends on capability-level redundancy, not on the re-forming mechanism alone. Because task-aware formation admits an agent</text>
-  <text x="50" y="542" font-size="12.3" fill="#0F2740" font-weight="normal">only when something requires it, every member of a formed team is load-bearing: the precision that makes the team efficient also leaves it</text>
-  <text x="50" y="562" font-size="12.3" fill="#0F2740" font-weight="normal">without slack. Detection is immediate only for a withdrawn process; an unresponsive one would wait for a timeout.</text>
+  <text x="50" y="42" font-size="10.5" fill="#1B4F80" font-weight="bold" letter-spacing="1.3">EXECUTION LIFECYCLE WITH FAILURE HANDLING</text>
+  <text x="356" y="42" font-size="12" fill="#7A8899" font-weight="normal">shared path for withdrawal and stalled-agent failures</text>
+  <rect x="70" y="90" width="180" height="54" rx="10" fill="url(#gPrimary)" filter="url(#lift)"/>
+  <text x="160" y="121" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle">discover agents</text>
+  <line x1="256" y1="117" x2="326" y2="117" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="332" y="90" width="180" height="54" rx="10" fill="url(#gPrimary)" filter="url(#lift)"/>
+  <text x="422" y="121" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle">form + order team</text>
+  <line x1="518" y1="117" x2="588" y2="117" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="594" y="90" width="180" height="54" rx="10" fill="url(#gPrimary)" filter="url(#lift)"/>
+  <text x="684" y="121" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle">execute steps</text>
+  <rect x="828" y="90" width="282" height="54" rx="10" fill="#FFF9EC" stroke="#E8D3A0" stroke-width="1"/>
+  <text x="969" y="111" font-size="12.5" fill="#8A6100" font-weight="bold" text-anchor="middle">monitor for interruption</text>
+  <text x="969" y="129" font-size="11.5" fill="#8A6100" font-weight="normal" text-anchor="middle">withdrawal or timeout</text>
+  <line x1="780" y1="117" x2="822" y2="117" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <line x1="969" y1="144" x2="969" y2="190" stroke="#D6E3F0" stroke-width="1.4" stroke-dasharray="4 4"/>
+  <rect x="650" y="198" width="254" height="84" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="777" y="226" font-size="12.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">withdrawn process</text>
+  <text x="777" y="248" font-size="11.2" fill="#0F2740" font-weight="normal" text-anchor="middle">connection refused immediately</text>
+  <text x="777" y="267" font-size="11.2" fill="#1E7A46" font-weight="bold" text-anchor="middle">detected in &lt; 0.01 s</text>
+  <rect x="936" y="198" width="174" height="84" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="1023" y="226" font-size="12.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">stalled process</text>
+  <text x="1023" y="248" font-size="11.2" fill="#0F2740" font-weight="normal" text-anchor="middle">still reachable</text>
+  <text x="1023" y="267" font-size="11.2" fill="#8A6100" font-weight="bold" text-anchor="middle">detected at timeout</text>
+  <path d="M777,282 C777,314 690,320 690,346" fill="none" stroke="#1B4F80" stroke-width="1.6" marker-end="url(#arw)"/>
+  <path d="M1023,282 C1023,314 870,320 870,346" fill="none" stroke="#1B4F80" stroke-width="1.6" marker-end="url(#arw)"/>
+  <rect x="602" y="352" width="356" height="56" rx="10" fill="url(#gAccent)" filter="url(#lift)"/>
+  <text x="780" y="385" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle">re-discover and re-form from produced state</text>
+  <line x1="780" y1="414" x2="780" y2="452" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="434" y="458" width="332" height="84" rx="9" fill="#EFF7F1" stroke="#B9DCC5" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="600" y="486" font-size="12.5" fill="#1E7A46" font-weight="bold" text-anchor="middle">recovery path</text>
+  <text x="600" y="508" font-size="11.5" fill="#0F2740" font-weight="normal" text-anchor="middle">alternative capability available</text>
+  <text x="600" y="527" font-size="11.5" fill="#0F2740" font-weight="normal" text-anchor="middle">resume chain and complete</text>
+  <rect x="794" y="458" width="332" height="84" rx="9" fill="#FFF9EC" stroke="#E8D3A0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="960" y="486" font-size="12.5" fill="#8A6100" font-weight="bold" text-anchor="middle">decline path</text>
+  <text x="960" y="508" font-size="11.5" fill="#0F2740" font-weight="normal" text-anchor="middle">no alternative satisfies requirement</text>
+  <text x="960" y="527" font-size="11.5" fill="#0F2740" font-weight="normal" text-anchor="middle">return explicit impossibility</text>
+  <line x1="780" y1="452" x2="600" y2="452" stroke="#1B4F80" stroke-width="1.4" marker-end="url(#arw)"/>
+  <line x1="780" y1="452" x2="960" y2="452" stroke="#1B4F80" stroke-width="1.4" marker-end="url(#arw)"/>
 </svg>
