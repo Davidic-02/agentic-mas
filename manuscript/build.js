@@ -145,7 +145,7 @@ const front = [
       right: { style: BorderStyle.SINGLE, size: 4, color: "BDD7EE", space: 8 },
     },
     children: [new TextRun({ font: SERIF, size: BODY, text:
-      "Agentic applications increasingly decompose a task across several specialised agents, but the composition of those agents is almost always fixed when the system is written. Cloud-native deployment makes that assumption unsound: agents are independently deployed services that scale, fail and appear while the system is running, so a team enumerated in source contradicts the environment it runs in. This chapter presents an agentic document-research system in which four specialised agents communicate through the Agent2Agent protocol, reach their tools through the Model Context Protocol, and run as independent workloads on Kubernetes; and it replaces the hardcoded team with formation performed at run time. Agents advertise consumed and produced information types in their A2A capability cards, and a coordinator derives both the membership and the ordering of a team by chaining those declarations. Formation was evaluated across four conditions, four deployment scenarios and fourteen tasks, giving 224 trials; because formation performs no model inference, the measurements are exact rather than sampled, and per-task ground truth was fixed before any result was observed. The first mechanism proved less precise than the static team it replaced, scoring 0.705 against 0.786, because formation never observed the task and therefore recruited every runnable agent irrespective of need. Introducing requirement markers, by which a task is profiled for the needs it raises and an agent earns inclusion only by necessity or by satisfying a marker, raised precision to 1.000 with perfect recall and reduced the mean team from 3.50 to 2.36 agents, with no source modification across any scenario. The clearest evidence for the mechanism is a reduction in completions: when the analysis agent is withdrawn, task-blind formation answers arithmetic questions using a team containing no arithmetic agent and reports success, whereas task-aware formation reports those tasks as impossible and names the absent capability." })],
+      "Agentic applications increasingly decompose a task across several specialised agents, but the composition of those agents is almost always fixed when the system is written. Cloud-native deployment makes that assumption unsound: agents are independently deployed services that scale, fail and appear while the system is running, so a team enumerated in source contradicts the environment it runs in. This chapter presents an agentic document-research system in which four specialised agents communicate through the Agent2Agent protocol, reach their tools through the Model Context Protocol, and run as independent workloads on Kubernetes; and it replaces the hardcoded team with formation performed at run time. Agents advertise consumed and produced information types in their A2A capability cards, and a coordinator derives both the membership and the ordering of a team by chaining those declarations. Formation was evaluated across four conditions, four deployment scenarios and fourteen tasks, giving 224 trials; because formation performs no model inference, the measurements are exact rather than sampled, and per-task ground truth was fixed before any result was observed. Two additional case studies then tested failures introduced after execution had already begun: withdrawal of an in-use agent and an in-use agent that remained reachable but stalled. The first mechanism proved less precise than the static team it replaced, scoring 0.705 against 0.786, because formation never observed the task and therefore recruited every runnable agent irrespective of need. Introducing requirement markers, by which a task is profiled for the needs it raises and an agent earns inclusion only by necessity or by satisfying a marker, raised precision to 1.000 with perfect recall and reduced the mean team from 3.50 to 2.36 agents, with no source modification across any scenario. The clearest evidence for the mechanism is a reduction in completions under capability loss: task-blind formation can still report success with an inadequate team, whereas task-aware formation declines those tasks and names the missing capability." })],
   }),
   rich([["Categories: ", { bold: true, color: NAVY }],
         ["Multi-Agent Systems, Distributed Systems, Cloud-Native Computing, Software Architecture, Agentic Artificial Intelligence"]],
@@ -219,14 +219,14 @@ const body2b = [
   p("A refiner of a given type must therefore precede any transformer of that type, since after the transformation the refined material is no longer read. Selection accordingly prefers refiners, breaking remaining ties by agent name so that a given deployment always yields the same plan. No per-type bookkeeping is required, because a refiner of a downstream type cannot become eligible until that type exists, which occurs only after the agents producing it have run."),
 
   h2("Task-aware formation"),
-  p("Chaining as described consults only the declared capabilities of the deployed agents. It never observes the task, and therefore derives an identical team for a question requiring arithmetic and one requiring none. To address this, a task is profiled into the set R of requirement markers it raises, and an agent earns inclusion only by being necessary to reach the goal or by satisfying a marker in R. Formation then searches for the smallest agent set satisfying Equation (4), and orders that set by the rule already established."),
-  eq("T* = arg min |T|  s.t.  goal ∈ A(T)  ∧  R ⊆ ∪ₐ₊ₜ Sₐ", 4),
+  p("Chaining as described consults only the declared capabilities of the deployed agents. It never observes the task, and therefore derives an identical team for a question requiring arithmetic and one requiring none. To address this, a task is profiled into the set R of requirement markers it raises, and an agent earns inclusion only by being necessary to reach the goal or by satisfying a marker in R. Formation then searches for the smallest agent set satisfying Equation (4), and orders that set by the rule already established; Figure 2 summarises the runtime workflow."),
+  eq("T* = arg min_T |T|  s.t.  goal ∈ A(T)  ∧  R ⊆ ⋃_{a∈T} S_a", 4),
   p("The search is breadth-first, so the first satisfying set encountered is of minimum size, and candidates are expanded in name order so that the result is reproducible. Where no set both reaches the goal and covers R, the task is reported as impossible and the uncovered markers are named. Returning a goal-reaching chain in that circumstance would be worse than returning nothing, since it would answer a question requiring computation with a team containing no agent able to compute, and would report success in doing so."),
   p("The profiler used here is a keyword matcher over the task text. This is a deliberate choice rather than a convenience: it keeps formation free of model inference, and therefore exactly measurable rather than sampled. Its generality is examined in the Discussion."),
 
   h2("Experimental design"),
   p("Four conditions were compared. The static condition is the arrangement the system had before formation was introduced, in which the team is written in source and is insensitive to what is deployed. The first derived condition is formation as originally implemented, blind to the task. The second derived condition isolates a change made to one agent's declaration, without task-awareness, so that its effect is not confounded with the mechanism. The targeted condition is task-aware formation as described above."),
-  p("Four deployment scenarios were used: a baseline of three agents; a fourth agent deployed after the system was written; withdrawal of a middle agent in the chain; and withdrawal of the entry agent. Fourteen tasks were used: three requiring a single retrieved fact, two requiring synthesis across documents, five requiring arithmetic the corpus does not state, two presenting a claim to be checked against the corpus, and two whose answers are absent from the corpus altogether. The full design is therefore four conditions by four scenarios by fourteen tasks, giving 224 trials."),
+  p("Four deployment scenarios were used: a baseline of three agents; a fourth agent deployed after the system was written; withdrawal of a middle agent in the chain; and withdrawal of the entry agent. Fourteen tasks were used: three requiring a single retrieved fact, two requiring synthesis across documents, five requiring arithmetic the corpus does not state, two presenting a claim to be checked against the corpus, and two whose answers are absent from the corpus altogether. The full design is therefore four conditions by four scenarios by fourteen tasks, giving 224 trials. Mid-execution failures were evaluated separately as supplementary case studies (Tables 6-7 and Figures 5-7) and are not part of this 224-trial factorial design."),
   p("For each task, the minimal set of agents genuinely required to answer it was recorded in advance of any result being observed. Precision and recall of the formed team were computed against that set as in Equations (5) and (6), where T is the team formed and N the required set. Precision penalises the recruitment of agents outside the required set; recall penalises omission of a required agent."),
   eq("Precision = | T ∩ N | / | T |", 5),
   eq("Recall = | T ∩ N | / | N |", 6),
@@ -236,12 +236,14 @@ const body2b = [
 
 
 // ---- figures ---------------------------------------------------------
-const figure = (file, w, h, capText) => [
+const figure = (file, w, h, capText, altText) => [
   new Paragraph({
     alignment: AlignmentType.CENTER,
     spacing: { before: 200, after: 80 },
     children: [new ImageRun({ type: "png", data: fs.readFileSync(file),
-      transformation: { width: w, height: h } })],
+      transformation: { width: w, height: h },
+      altText: altText ? { title: capText, description: altText, name: file } : undefined,
+    })],
   }),
   new Paragraph({
     alignment: AlignmentType.CENTER,
@@ -251,13 +253,28 @@ const figure = (file, w, h, capText) => [
 ];
 
 const figureArch = figure("figure_architecture.png", 668, 413,
-  "Figure 1. System architecture. Agents are independently deployed workloads; A2A carries agent-to-agent traffic and MCP carries all tool access. The coordinator learns which agents exist by querying the cluster, not from its own source.");
+  "Figure 1. System architecture. Agents are independently deployed workloads; A2A carries agent-to-agent traffic and MCP carries all tool access. The coordinator learns which agents exist by querying the cluster, not from its own source.",
+  "System architecture showing user request, coordinator, discovered agents, A2A communication, MCP tool access and Kubernetes deployment layer.");
 
 const figureFail = figure("figure_failure_modes.png", 668, 318,
-  "Figure 4. The two ways an agent fails, and what each is visible to. A withdrawn process is detected by every signal at once; an unresponsive one passes its readiness probe throughout and is detected only when the caller's timeout expires.");
+  "Figure 6. The two ways an agent fails, and what each is visible to. A withdrawn process is detected by every signal at once; an unresponsive one passes its readiness probe throughout and is detected only when the caller's timeout expires.",
+  "Side-by-side comparison of withdrawn versus stalled agent behaviour and what Kubernetes and caller signals observe.");
 
 const figureWithdraw = figure("figure_withdrawal.png", 668, 340,
-  "Figure 3. Withdrawal of an agent during execution, under a fixed plan and under re-formation. Recovery is possible only where a second agent satisfies the same requirement.");
+  "Figure 5. Withdrawal of an agent during execution, under a fixed plan and under re-formation. Recovery is possible only where a second agent satisfies the same requirement.",
+  "Two execution cases under mid-run withdrawal: irrecoverable sole satisfier and recoverable redundant satisfier.");
+
+const figureWorkflow = figure("figure_task_aware_workflow.png", 668, 266,
+  "Figure 2. Task-aware runtime formation workflow: requirement profiling, capability discovery, minimum-cardinality team search, deterministic ordering, then execution or explicit impossibility reporting.",
+  "Flow from task text through requirement profiling, capability discovery, team search and ordering to either execution or explicit impossibility report.");
+
+const figureComparison = figure("figure_strategy_comparison.png", 668, 345,
+  "Figure 4. Comparison of static composition, task-blind formation and task-aware formation. The contrast highlights source-edit burden, unnecessary recruitment and explicit impossibility reporting.",
+  "Three-column comparison of composition strategies across source edits, recruitment behaviour and failure reporting.");
+
+const figureLifecycle = figure("figure_lifecycle_recovery.png", 668, 266,
+  "Figure 7. Compact execution lifecycle under failures: discovery, execution, timeout or withdrawal detection, re-formation, then recovery or explicit decline.",
+  "Lifecycle diagram showing detection of withdrawal or timeout and branch to recovery or explicit decline after re-formation.");
 
 // ---- Figure 2 ------------------------------------------------------------
 const figure1 = [
@@ -268,13 +285,18 @@ const figure1 = [
       type: "png",
       data: fs.readFileSync("figure_formation.png"),
       transformation: { width: 668, height: 391 },
+      altText: {
+        title: "Figure 3 team formation by task",
+        description: "Same deployment yielding different teams for retrieval-only and computation tasks.",
+        name: "figure_formation.png",
+      },
     })],
   }),
   new Paragraph({
     alignment: AlignmentType.CENTER,
     spacing: { after: 180 },
     children: [new TextRun({
-      text: "Figure 2. The same deployment yielding different teams for two tasks. Membership is decided by the requirements the task raises, not by which agents happen to be eligible.",
+      text: "Figure 3. The same deployment yielding different teams for two tasks. Membership is decided by the requirements the task raises, not by which agents happen to be eligible.",
       font: SERIF, size: SMALL, bold: true, color: NAVY })],
   }),
 ];
@@ -297,11 +319,11 @@ const table2 = [
 // =========================================================================
 const body3 = [
   h1("Results"),
-  p("Table 3 reports the headline comparison. The static team and task-blind formation are separated by no single measure that favours formation unambiguously; the static team is in fact the more precise of the two. Task-aware formation dominates both."),
+  p("Table 3 reports the headline comparison, while Table 4 reports completion counts by scenario and Figure 4 summarises why the three composition strategies diverge. The static team and task-blind formation are separated by no single measure that favours formation unambiguously; the static team is in fact the more precise of the two. Task-aware formation dominates both."),
 ];
 
 const table3 = [
-  caption("Table 3. Formation quality by condition, over 224 trials. Precision and recall are means over completing trials."),
+  caption("Table 3. Formation quality by condition, over 224 trials. Precision and recall are macro-averaged over applicable completed trials only; completion and failure counts are reported separately in Table 4."),
   table([2980, 1384, 1384, 1384, 1384, 1384], [
     ["Condition", "Precision", "Recall", "Team size", "Source edits", "Runtime failures"],
     ["Static team", "0.786", "0.952", "3.00", "42", "28"],
@@ -333,7 +355,7 @@ const table3 = [
 const body4a = [
   p("Adaptivity separates the conditions sharply. Every scenario other than the baseline required modification of source under the static arrangement, forty-two modifications in total across the design, and none under any formed condition. The static arrangement also accounts for all twenty-eight runtime failures observed: because it cannot know that an agent is absent, it discovers the absence by invoking the agent, after other agents have already run and consumed resources."),
   p("Precision is the measure on which the first mechanism was found wanting. Task-blind formation scores 0.705 against the static team's 0.786, and forms larger teams, 3.50 agents against 3.00. The static team's recall, at 0.952, is itself below unity: it never includes the fact-checking agent, so the two tasks requiring a claim to be checked are answered by a team that cannot check one. The cause is visible in the scenario in which a fourth agent is deployed: formation includes that agent because it is eligible, not because any task requires it. Since the mechanism never observes the task, eligibility is the only criterion available to it."),
-  p("Separating the two changes made to the mechanism shows where the improvement originates. Loosening the writer agent's declaration, which had previously required conclusions and thereby forced the analysis agent into every chain, raises precision from 0.705 to 0.804 but lowers recall from 0.976 to 0.929. Task-awareness is what carries precision to 1.000 while restoring recall to 1.000, and reduces the mean team to 2.36 agents. Table 5 shows the mechanism at work: teams differ by task, and match the pre-registered requirement sets exactly."),
+  p("Separating the two changes made to the mechanism shows where the improvement originates. Loosening the writer agent's declaration, which had previously required conclusions and thereby forced the analysis agent into every chain, raises precision from 0.705 to 0.804 but lowers recall from 0.976 to 0.929. Task-awareness is what carries precision to 1.000 while restoring recall to 1.000, and reduces the mean team to 2.36 agents. Table 5 shows the mechanism at work: teams differ by task, and match the requirement sets fixed before any result was observed."),
   p("The most informative result is a reduction in completions. When the analysis agent is withdrawn, the loosened condition completes all fourteen tasks and the task-aware condition completes seven. The lower figure is the correct behaviour. Five of the fourteen tasks require arithmetic the corpus does not state and two require a claim to be checked; with neither an analysis nor a fact-checking agent deployed in that scenario, the loosened condition answers all of them using research and writer alone and reports success, whereas the task-aware condition declines those seven and names the absent capability in each case. The same behaviour appears in the baseline scenario, where the task-aware condition completes twelve of fourteen, declining the two verification tasks because no fact-checking agent is deployed. A system that answers an arithmetic question without an arithmetic agent has not succeeded but has failed silently, and no measure of completion alone distinguishes the two."),
 
 ];
@@ -343,8 +365,8 @@ const body4b = [
   p("Runtime formation removes a genuine defect. A team written in source is an assertion about a deployment, and in a cloud-native environment that assertion decays without warning; formation eliminated every source modification the scenarios would otherwise have required, and converted twenty-eight runtime failures into determinations made before any agent was invoked. That much was expected."),
   p("The more useful discussion concerns the result that was not expected. The mechanism, as first implemented, was less precise than the arrangement it replaced. This was not an implementation defect but a property of the design: formation consulted the capability graph and nothing else, so an agent's eligibility was the whole of its claim to inclusion. Retaining that negative result was instructive, because the diagnosis it forced produced the final mechanism, and because it establishes that the adaptivity gain is not free."),
   p("A second observation deserves emphasis. Before the writer agent's declaration was loosened, arithmetic tasks succeeded under task-blind formation, but not because formation had determined that they required arithmetic. The writer required conclusions, only the analysis agent produced conclusions, and analysis was therefore unavoidable in every chain. The mechanism was working by an accident of how capabilities had been declared. This is worth stating plainly because it is a hazard specific to declaration-driven systems: a sufficiently constrained declaration can conceal the absence of a decision procedure, and the concealment is discovered only when the constraint is relaxed."),
-  p("The finding with the broadest implication is that completion is an inadequate measure for these systems. Under withdrawal of the analysis agent, the condition completing more tasks is the condition behaving worse. This aligns with the multi-agent failure literature, in which the largest failure category concerns verification rather than execution, and systems report success while returning unreliable results [ref]. Formation offers a partial defence not available to a static team: because membership is decided before execution and against a stated requirement, a task whose requirements cannot be met is identifiable in advance rather than after the fact."),
-  p("Several limitations bound these results. The task profiler is a keyword matcher, chosen so that formation remains free of inference and therefore exactly measurable; it will not generalise to unusually phrased tasks, and a model-based profiler is the natural successor, though it would require a different evaluation design, since composition would cease to be exact and would have to be sampled. The task set comprises fourteen tasks over a four-document corpus. It exercises both requirement markers and separates the conditions, but it does not characterise the profiler's coverage over arbitrary phrasing. Requirement markers are declared by the author of each agent, so a miscategorised agent produces a miscategorised team, and nothing verifies a declaration against behaviour. Both failure modes during execution were tested. What remains untested is a partial failure, in which an agent returns promptly but returns something wrong; no signal in this system would register that at all, and the multi-agent failure literature identifies it as the largest failure category. Finally, answer quality under real inference was confirmed to be functional but was not measured, so the effect of team composition on the quality of the final answer remains open."),
+  p("The finding with the broadest implication is that completion is an inadequate measure for these systems. Under withdrawal of the analysis agent, the condition completing more tasks is the condition behaving worse. This aligns with the multi-agent failure literature, which includes task-verification failures in which systems report success while returning unreliable results [ref]. Formation offers a partial defence not available to a static team: because membership is decided before execution and against a stated requirement, a task whose requirements cannot be met is identifiable in advance rather than after the fact."),
+  p("Several limitations bound these results. The task profiler is a keyword matcher, chosen so that formation remains free of inference and therefore exactly measurable; it will not generalise to unusually phrased tasks, and a model-based profiler is the natural successor, though it would require a different evaluation design, since composition would cease to be exact and would have to be sampled. The task set comprises fourteen tasks over a four-document corpus. It exercises both requirement markers and separates the conditions, but it does not characterise the profiler's coverage over arbitrary phrasing. Requirement markers are declared by the author of each agent, so a miscategorised agent produces a miscategorised team, and nothing verifies a declaration against behaviour. The perfect precision and recall reported for the task-aware condition therefore demonstrate behaviour on this constructed, author-defined evaluation rather than generalisation to arbitrary tasks. Mid-execution withdrawal and stalled-agent failures were tested; a partial failure, in which an agent returns promptly but returns something wrong, remains untested and would not be detected by any current health signal. Finally, answer quality under real inference was confirmed to be functional but was not measured, so the effect of team composition on the quality of the final answer remains open."),
   p("Relative to the reviewed literature, the contribution is narrow and deliberately so. No claim is made regarding the deployment of agents on Kubernetes, which the reviewed infrastructure work already addresses, nor regarding the protocols, which are consumed as specified. The claim concerns the step between a discovered set of agents and a working team, which the reviewed work leaves unspecified, and the demonstration that this step admits a measurable criterion beyond feasibility."),
 
   h1("Conclusions"),
@@ -421,7 +443,7 @@ const actions = [
 const withdrawalText = [
   h2("Withdrawal during execution"),
   p("Every scenario reported above alters the deployment before formation runs, which is the straightforward case: formation simply observes a different set of agents. The harder case is an agent withdrawn after the team has been formed and while it is being executed. Two conditions were compared. Under a fixed plan the team is computed once and followed, which is the behaviour described so far. Under re-formation, a failed call causes the coordinator to re-discover what is still running and re-form from the material already produced rather than from the beginning."),
-  p("Two cases were used, chosen because they should behave differently. In the first the withdrawn agent is the only one satisfying a requirement the task raised, so no recovery is possible and the question is only whether that is reported or merely crashed into. In the second a second agent satisfying the same requirement is also deployed, so recovery is possible and the conditions can separate. Results appear in Table 6 and Figure 3."),
+  p("Two cases were used, chosen because they should behave differently. In the first the withdrawn agent is the only one satisfying a requirement the task raised, so no recovery is possible and the question is only whether that is reported or merely crashed into. In the second a second agent satisfying the same requirement is also deployed, so recovery is possible and the conditions can separate. Results appear in Table 6 and Figure 5."),
 ];
 
 const table6 = [
@@ -436,15 +458,15 @@ const table6 = [
 const withdrawalText2 = [
   p("Three things follow. Re-formation converts an abort into either a completed task or a stated reason, which is the same distinction observed between runtime and reported failure in the scenario results. Recovery itself, however, depends on capability-level redundancy rather than on the re-forming mechanism: in the second case an agent able to do the work was running and idle throughout, and the fixed plan failed only because it could not be revised to reach it."),
   p("The third observation is the more interesting, and it qualifies the earlier precision result. Because task-aware formation admits an agent only when something requires it, every member of a formed team is load-bearing by construction. There are no optional members to lose. The precision that makes the team efficient is the same property that leaves it without slack, so any withdrawal from a formed team necessarily breaks a requirement. Redundancy must therefore be supplied by the deployment, through a second agent or a second replica, rather than expected from formation."),
-  p("Detection was immediate in all trials, at less than one hundredth of a second, because a withdrawn process refuses the connection outright. This figure should not be generalised: an agent that remains reachable but stops responding would not be detected until a timeout expired, and that case was not tested."),
+  p("Detection was immediate in all trials, at less than one hundredth of a second, because a withdrawn process refuses the connection outright. This figure should not be generalised: an agent that remains reachable but stops responding is detected only when the caller timeout expires, and that separate case-study is reported in Table 7, Figure 6 and Figure 7."),
 ];
 
 const unresponsiveText = [
   h2("An agent that is reachable but not progressing"),
   p("Withdrawal by removal is the benign failure: the connection is refused and every signal agrees at once. The harder case is an agent whose process is still running and still serving its capability card, but which accepts a task and never returns it. This was tested by configuring one agent to accept work and sleep indefinitely, leaving its card endpoint untouched, with the client timeout set to eight seconds."),
-  p("The result is reported in Table 7 and drawn in Figure 4. In all four trials the agent's card endpoint continued to serve while the agent performed no work whatsoever. The readiness probe defined in the deployment manifests fetches exactly that endpoint, so the platform's own health signal reported the agent as ready throughout, the pod was retained in its Service, discovery continued to return it, and formation continued to select it. Detection occurred at 8.0 seconds in every trial, which is to say at precisely the timeout configured by the caller and not a moment sooner."),
+  p("The result is reported in Table 7 and drawn in Figure 6. In all four trials the agent's card endpoint continued to serve while the agent performed no work whatsoever. The readiness probe defined in the deployment manifests fetches exactly that endpoint, so the platform's own health signal reported the agent as ready throughout, the pod was retained in its Service, discovery continued to return it, and formation continued to select it. Detection occurred at 8.0 seconds in every trial, which is to say at precisely the timeout configured by the caller and not a moment sooner."),
   p("Two consequences follow. The first is that detection latency in this failure mode is not a property of the system at all but a configuration choice, and the eight-second figure reported here carries no meaning beyond the value that produced it. The second is more uncomfortable: a probe that fetches a capability card establishes that an agent can describe itself, which is a strictly weaker claim than that it can do anything. Between the moment an agent stalls and the moment a caller's timeout expires, every health signal available to this system reports normality."),
-  p("Re-formation behaves as it does under withdrawal once the timeout has expired. Where a second agent satisfies the same requirement the run recovers, re-forming as compute to writer from the material already held; where none does, the task is declined with the unsatisfiable requirement named. The mechanism is therefore indifferent to which of the two failure modes occurred, and only the delay before it is invoked differs."),
+  p("Re-formation behaves as it does under withdrawal once the timeout has expired. Where a second agent satisfies the same requirement the run recovers, re-forming as compute to writer from the material already held; where none does, the task is declined with the unsatisfiable requirement named. The mechanism is therefore indifferent to which of the two failure modes occurred, and only the delay before it is invoked differs; Figure 7 summarises this shared lifecycle."),
 ];
 
 const table7 = [
@@ -469,13 +491,15 @@ const doc = new Document({
     sec(TWO_COL, body2a),
     sec(ONE_COL, figureArch),
     sec(TWO_COL, body2b),
+    sec(ONE_COL, figureWorkflow),
     sec(ONE_COL, [...figure1, ...table2]),
     sec(TWO_COL, body3),
+    sec(ONE_COL, figureComparison),
     sec(ONE_COL, table3),
     sec(TWO_COL, [...body4a, ...withdrawalText]),
     sec(ONE_COL, [...table6, ...figureWithdraw]),
     sec(TWO_COL, [...withdrawalText2, ...unresponsiveText]),
-    sec(ONE_COL, [...table7, ...figureFail]),
+    sec(ONE_COL, [...table7, ...figureFail, ...figureLifecycle]),
     sec(TWO_COL, [...body4b, ...refs]),
     sec(ONE_COL, actions),
   ],

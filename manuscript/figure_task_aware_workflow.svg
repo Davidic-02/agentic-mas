@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="470" viewBox="0 0 1180 470" font-family="Arial">
+  <defs>
+    <linearGradient id="gPrimary" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#23598C"/>
+      <stop offset="100%" stop-color="#1B4F80"/>
+    </linearGradient>
+    <linearGradient id="gAccent" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3D84C4"/>
+      <stop offset="100%" stop-color="#2E74B5"/>
+    </linearGradient>
+    <filter id="lift" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="1.4" stdDeviation="2.2"
+                    flood-color="#0F2740" flood-opacity="0.13"/>
+    </filter>
+    <filter id="liftSoft" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.6"
+                    flood-color="#0F2740" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arw" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0.5,1 L7,4 L0.5,7" fill="none" stroke="#1B4F80"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arwMute" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0.5,1 L7,4 L0.5,7" fill="none" stroke="#7A8899"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect width="1180" height="470" fill="#FDFEFF"/>
+  <text x="50" y="48" font-size="10.5" fill="#1B4F80" font-weight="bold" letter-spacing="1.3">TASK-AWARE RUNTIME FORMATION</text>
+  <text x="50" y="72" font-size="12" fill="#7A8899" font-weight="normal">workflow used before any agent is called</text>
+  <rect x="40" y="132" width="192" height="84" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="136" y="162" font-size="12.8" fill="#1B4F80" font-weight="bold" text-anchor="middle">task text</text>
+  <text x="136" y="185" font-size="10.8" fill="#0F2740" font-weight="normal" text-anchor="middle">natural-language request</text>
+  <rect x="254" y="132" width="192" height="84" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="350" y="162" font-size="12.8" fill="#1B4F80" font-weight="bold" text-anchor="middle">requirement profiling</text>
+  <text x="350" y="185" font-size="10.8" fill="#0F2740" font-weight="normal" text-anchor="middle">raise markers R from text</text>
+  <rect x="468" y="132" width="192" height="84" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="564" y="162" font-size="12.8" fill="#1B4F80" font-weight="bold" text-anchor="middle">capability discovery</text>
+  <text x="564" y="185" font-size="10.8" fill="#0F2740" font-weight="normal" text-anchor="middle">discover live agents and tags</text>
+  <rect x="682" y="132" width="192" height="84" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="778" y="162" font-size="12.8" fill="#1B4F80" font-weight="bold" text-anchor="middle">candidate team search</text>
+  <text x="778" y="185" font-size="10.8" fill="#0F2740" font-weight="normal" text-anchor="middle">min-cardinality set reaching goal and covering R</text>
+  <rect x="896" y="132" width="192" height="84" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="992" y="162" font-size="12.8" fill="#1B4F80" font-weight="bold" text-anchor="middle">ordering</text>
+  <text x="992" y="185" font-size="10.8" fill="#0F2740" font-weight="normal" text-anchor="middle">prefer refiners; deterministic tie-break</text>
+  <line x1="232" y1="174" x2="254" y2="174" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <line x1="446" y1="174" x2="468" y2="174" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <line x1="660" y1="174" x2="682" y2="174" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <line x1="874" y1="174" x2="896" y2="174" stroke="#1B4F80" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arw)"/>
+  <rect x="154" y="286" width="408" height="112" rx="9" fill="#F4F8FC" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="358" y="316" font-size="14" fill="#1E7A46" font-weight="bold" text-anchor="middle">execute derived team</text>
+  <text x="358" y="338" font-size="11.4" fill="#0F2740" font-weight="normal" text-anchor="middle">goal is reachable and all requirement markers</text>
+  <text x="358" y="356" font-size="11.4" fill="#0F2740" font-weight="normal" text-anchor="middle">are covered by the selected agents</text>
+  <text x="358" y="379" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">output: report</text>
+  <rect x="620" y="286" width="408" height="112" rx="9" fill="#FFF9EC" stroke="#E8D3A0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <text x="824" y="316" font-size="14" fill="#8A6100" font-weight="bold" text-anchor="middle">report impossible</text>
+  <text x="824" y="338" font-size="11.4" fill="#0F2740" font-weight="normal" text-anchor="middle">no team satisfies goal and requirement coverage</text>
+  <text x="824" y="356" font-size="11.4" fill="#0F2740" font-weight="normal" text-anchor="middle">output: missing capability or uncovered marker</text>
+  <text x="824" y="379" font-size="11.5" fill="#1B4F80" font-weight="bold" text-anchor="middle">no partial execution attempted</text>
+  <line x1="992" y1="216" x2="358" y2="286" stroke="#7A8899" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arwMute)"/>
+  <line x1="992" y1="216" x2="824" y2="286" stroke="#7A8899" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arwMute)"/>
+</svg>
