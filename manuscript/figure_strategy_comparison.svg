@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610" viewBox="0 0 1180 610" font-family="Arial">
+  <defs>
+    <linearGradient id="gPrimary" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#23598C"/>
+      <stop offset="100%" stop-color="#1B4F80"/>
+    </linearGradient>
+    <linearGradient id="gAccent" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3D84C4"/>
+      <stop offset="100%" stop-color="#2E74B5"/>
+    </linearGradient>
+    <filter id="lift" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="1.4" stdDeviation="2.2"
+                    flood-color="#0F2740" flood-opacity="0.13"/>
+    </filter>
+    <filter id="liftSoft" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.6"
+                    flood-color="#0F2740" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arw" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0.5,1 L7,4 L0.5,7" fill="none" stroke="#1B4F80"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arwMute" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0.5,1 L7,4 L0.5,7" fill="none" stroke="#7A8899"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect width="1180" height="610" fill="#FDFEFF"/>
+  <text x="50" y="48" font-size="10.5" fill="#1B4F80" font-weight="bold" letter-spacing="1.3">TEAM-COMPOSITION STRATEGIES</text>
+  <text x="50" y="72" font-size="12" fill="#7A8899" font-weight="normal">same deployment and task pool, different composition policies</text>
+  <rect x="40" y="104" width="360" height="458" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <rect x="58" y="122" width="324" height="44" rx="8" fill="url(#gPrimary)" filter="url(#lift)"/>
+  <text x="220" y="149" font-size="14" fill="#FFFFFF" font-weight="bold" text-anchor="middle">static composition</text>
+  <text x="220" y="181" font-size="11.2" fill="#7A8899" font-weight="normal" text-anchor="middle">team written in source</text>
+  <rect x="420" y="104" width="360" height="458" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <rect x="438" y="122" width="324" height="44" rx="8" fill="url(#gPrimary)" filter="url(#lift)"/>
+  <text x="600" y="149" font-size="14" fill="#FFFFFF" font-weight="bold" text-anchor="middle">task-blind formation</text>
+  <text x="600" y="181" font-size="11.2" fill="#7A8899" font-weight="normal" text-anchor="middle">derived from eligibility only</text>
+  <rect x="800" y="104" width="360" height="458" rx="9" fill="#FFFFFF" stroke="#D6E3F0" stroke-width="1.1" filter="url(#liftSoft)"/>
+  <rect x="818" y="122" width="324" height="44" rx="8" fill="url(#gPrimary)" filter="url(#lift)"/>
+  <text x="980" y="149" font-size="14" fill="#FFFFFF" font-weight="bold" text-anchor="middle">task-aware formation</text>
+  <text x="980" y="181" font-size="11.2" fill="#7A8899" font-weight="normal" text-anchor="middle">derived from goal and requirement markers</text>
+  <rect x="58" y="210" width="324" height="96" rx="8" fill="#FFF9EC" stroke="#E8D3A0" stroke-width="1.1"/>
+  <text x="74" y="234" font-size="12.5" fill="#8A6100" font-weight="bold">source edits</text>
+  <text x="74" y="254" font-size="11.8" fill="#0F2740" font-weight="normal">deployment changes require coordinator updates</text>
+  <text x="74" y="271" font-size="11.8" fill="#0F2740" font-weight="normal">and re-deployments to keep teams valid</text>
+  <rect x="58" y="324" width="324" height="96" rx="8" fill="#F4F8FC" stroke="#D6E3F0" stroke-width="1.1"/>
+  <text x="74" y="348" font-size="12.5" fill="#1B4F80" font-weight="bold">agent usage</text>
+  <text x="74" y="368" font-size="11.8" fill="#0F2740" font-weight="normal">stable team size</text>
+  <text x="74" y="385" font-size="11.8" fill="#0F2740" font-weight="normal">but insensitive to current deployment</text>
+  <rect x="58" y="438" width="324" height="96" rx="8" fill="#FDF3F2" stroke="#EFC6C2" stroke-width="1.1"/>
+  <text x="74" y="462" font-size="12.5" fill="#B3261E" font-weight="bold">failure expression</text>
+  <text x="74" y="482" font-size="11.8" fill="#0F2740" font-weight="normal">missing agent often discovered only after</text>
+  <text x="74" y="499" font-size="11.8" fill="#0F2740" font-weight="normal">execution has already started</text>
+  <rect x="438" y="210" width="324" height="96" rx="8" fill="#EFF7F1" stroke="#B9DCC5" stroke-width="1.1"/>
+  <text x="454" y="234" font-size="12.5" fill="#1E7A46" font-weight="bold">source edits</text>
+  <text x="454" y="254" font-size="11.8" fill="#0F2740" font-weight="normal">none when deployment changes</text>
+  <text x="454" y="271" font-size="11.8" fill="#0F2740" font-weight="normal">team is derived at runtime</text>
+  <rect x="438" y="324" width="324" height="96" rx="8" fill="#FFF9EC" stroke="#E8D3A0" stroke-width="1.1"/>
+  <text x="454" y="348" font-size="12.5" fill="#8A6100" font-weight="bold">agent usage</text>
+  <text x="454" y="368" font-size="11.8" fill="#0F2740" font-weight="normal">recruits eligible agents whether needed</text>
+  <text x="454" y="385" font-size="11.8" fill="#0F2740" font-weight="normal">which raises unnecessary model calls</text>
+  <rect x="438" y="438" width="324" height="96" rx="8" fill="#FDF3F2" stroke="#EFC6C2" stroke-width="1.1"/>
+  <text x="454" y="462" font-size="12.5" fill="#B3261E" font-weight="bold">failure expression</text>
+  <text x="454" y="482" font-size="11.8" fill="#0F2740" font-weight="normal">can complete tasks with inadequate teams</text>
+  <text x="454" y="499" font-size="11.8" fill="#0F2740" font-weight="normal">and report misleading success</text>
+  <rect x="818" y="210" width="324" height="96" rx="8" fill="#EFF7F1" stroke="#B9DCC5" stroke-width="1.1"/>
+  <text x="834" y="234" font-size="12.5" fill="#1E7A46" font-weight="bold">source edits</text>
+  <text x="834" y="254" font-size="11.8" fill="#0F2740" font-weight="normal">none when deployment changes</text>
+  <text x="834" y="271" font-size="11.8" fill="#0F2740" font-weight="normal">same as task-blind at deployment boundary</text>
+  <rect x="818" y="324" width="324" height="96" rx="8" fill="#EFF7F1" stroke="#B9DCC5" stroke-width="1.1"/>
+  <text x="834" y="348" font-size="12.5" fill="#1E7A46" font-weight="bold">agent usage</text>
+  <text x="834" y="368" font-size="11.8" fill="#0F2740" font-weight="normal">admits agents only when task requires</text>
+  <text x="834" y="385" font-size="11.8" fill="#0F2740" font-weight="normal">them; avoids unnecessary recruitment</text>
+  <rect x="818" y="438" width="324" height="96" rx="8" fill="#F4F8FC" stroke="#D6E3F0" stroke-width="1.1"/>
+  <text x="834" y="462" font-size="12.5" fill="#1B4F80" font-weight="bold">failure expression</text>
+  <text x="834" y="482" font-size="11.8" fill="#0F2740" font-weight="normal">declines impossible tasks before execution</text>
+  <text x="834" y="499" font-size="11.8" fill="#0F2740" font-weight="normal">with missing capability named explicitly</text>
+</svg>

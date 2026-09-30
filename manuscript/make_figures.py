@@ -1,4 +1,4 @@
-"""Draw the chapter's three figures."""
+"""Draw the chapter's manuscript figures."""
 
 import pathlib
 import cairosvg
@@ -371,11 +371,153 @@ def failure_modes() -> str:
 
 
 # ==========================================================================
+def task_aware_workflow() -> str:
+    W, H = 1180, 470
+    o = []
+    o.append(eyebrow(50, 48, "task-aware runtime formation", PRIMARY))
+    o.append(txt(50, 72, "workflow used before any agent is called", 12, MUTED))
+
+    boxes = [
+        ("task text", "natural-language request", 40),
+        ("requirement profiling", "raise markers R from text", 254),
+        ("capability discovery", "discover live agents and tags", 468),
+        ("candidate team search", "min-cardinality set reaching goal and covering R", 682),
+        ("ordering", "prefer refiners; deterministic tie-break", 896),
+    ]
+    for title, sub, x in boxes:
+        o.append(card(x, 132, 192, 84))
+        o.append(txt(x + 96, 162, title, 12.8, PRIMARY, "bold", "middle"))
+        o.append(txt(x + 96, 185, sub, 10.8, INK, anchor="middle"))
+    for x in [232, 446, 660, 874]:
+        o.append(link(x, 174, x + 22, 174))
+
+    o.append(card(154, 286, 408, 112, fill=TINT, stroke=BORDER))
+    o.append(txt(358, 316, "execute derived team", 14, OK_FG, "bold", "middle"))
+    o.append(txt(358, 338, "goal is reachable and all requirement markers", 11.4, INK, anchor="middle"))
+    o.append(txt(358, 356, "are covered by the selected agents", 11.4, INK, anchor="middle"))
+    o.append(txt(358, 379, "output: report", 11.5, PRIMARY, "bold", "middle"))
+
+    o.append(card(620, 286, 408, 112, fill=WARN_BG, stroke=WARN_BD))
+    o.append(txt(824, 316, "report impossible", 14, WARN_FG, "bold", "middle"))
+    o.append(txt(824, 338, "no team satisfies goal and requirement coverage", 11.4, INK, anchor="middle"))
+    o.append(txt(824, 356, "output: missing capability or uncovered marker", 11.4, INK, anchor="middle"))
+    o.append(txt(824, 379, "no partial execution attempted", 11.5, PRIMARY, "bold", "middle"))
+
+    o.append(link(992, 216, 358, 286, muted=True))
+    o.append(link(992, 216, 824, 286, muted=True))
+    return svg(W, H, "\n  ".join(o))
+
+
+# ==========================================================================
+def strategy_comparison() -> str:
+    W, H = 1180, 610
+    o = []
+    o.append(eyebrow(50, 48, "team-composition strategies", PRIMARY))
+    o.append(txt(50, 72, "same deployment and task pool, different composition policies", 12, MUTED))
+
+    titles = [
+        ("static composition", "team written in source"),
+        ("task-blind formation", "derived from eligibility only"),
+        ("task-aware formation", "derived from goal and requirement markers"),
+    ]
+    for i, (title, sub) in enumerate(titles):
+        x = 40 + i * 380
+        o.append(card(x, 104, 360, 458))
+        o.append(solid(x + 18, 122, 324, 44, r=8))
+        o.append(txt(x + 180, 149, title, 14, "#FFFFFF", "bold", "middle"))
+        o.append(txt(x + 180, 181, sub, 11.2, MUTED, anchor="middle"))
+
+    # static
+    o.append(note(58, 210, 324, 96, "source edits", [
+        "deployment changes require coordinator updates",
+        "and re-deployments to keep teams valid",
+    ], WARN_FG, WARN_BG, WARN_BD))
+    o.append(note(58, 324, 324, 96, "agent usage", [
+        "stable team size",
+        "but insensitive to current deployment",
+    ], PRIMARY, TINT, BORDER))
+    o.append(note(58, 438, 324, 96, "failure expression", [
+        "missing agent often discovered only after",
+        "execution has already started",
+    ], BAD_FG, BAD_BG, BAD_BD))
+
+    # task-blind
+    o.append(note(438, 210, 324, 96, "source edits", [
+        "none when deployment changes",
+        "team is derived at runtime",
+    ], OK_FG, OK_BG, OK_BD))
+    o.append(note(438, 324, 324, 96, "agent usage", [
+        "recruits eligible agents whether needed",
+        "which raises unnecessary model calls",
+    ], WARN_FG, WARN_BG, WARN_BD))
+    o.append(note(438, 438, 324, 96, "failure expression", [
+        "can complete tasks with inadequate teams",
+        "and report misleading success",
+    ], BAD_FG, BAD_BG, BAD_BD))
+
+    # task-aware
+    o.append(note(818, 210, 324, 96, "source edits", [
+        "none when deployment changes",
+        "same as task-blind at deployment boundary",
+    ], OK_FG, OK_BG, OK_BD))
+    o.append(note(818, 324, 324, 96, "agent usage", [
+        "admits agents only when task requires",
+        "them; avoids unnecessary recruitment",
+    ], OK_FG, OK_BG, OK_BD))
+    o.append(note(818, 438, 324, 96, "failure expression", [
+        "declines impossible tasks before execution",
+        "with missing capability named explicitly",
+    ], PRIMARY, TINT, BORDER))
+    return svg(W, H, "\n  ".join(o))
+
+
+# ==========================================================================
+def lifecycle_recovery() -> str:
+    W, H = 1180, 470
+    o = []
+    o.append(eyebrow(50, 48, "execution lifecycle with failure handling", PRIMARY))
+    o.append(txt(50, 72, "re-formation path after withdrawal or timeout", 12, MUTED))
+
+    steps = [
+        ("discover", "read live cards"),
+        ("form", "derive ordered team"),
+        ("execute", "invoke next agent"),
+        ("detect", "withdrawal or timeout"),
+        ("re-form", "re-derive from remaining agents"),
+    ]
+    x = 56
+    for i, (name, sub) in enumerate(steps):
+        fill = TINT if i in (0, 1, 4) else "#FFFFFF"
+        o.append(card(x, 132, 190, 84, fill=fill))
+        o.append(txt(x + 95, 162, name, 13.2, PRIMARY, "bold", "middle"))
+        o.append(txt(x + 95, 185, sub, 10.8, INK, anchor="middle"))
+        if i < len(steps) - 1:
+            o.append(link(x + 190, 174, x + 216, 174))
+        x += 216
+
+    o.append(card(180, 290, 366, 112, fill=OK_BG, stroke=OK_BD))
+    o.append(txt(363, 320, "recovery path", 14, OK_FG, "bold", "middle"))
+    o.append(txt(363, 342, "alternate satisfier exists", 11.5, INK, anchor="middle"))
+    o.append(txt(363, 364, "continue execution and complete", 11.5, INK, anchor="middle"))
+    o.append(link(920, 216, 363, 290, muted=True))
+
+    o.append(card(632, 290, 366, 112, fill=WARN_BG, stroke=WARN_BD))
+    o.append(txt(815, 320, "explicit decline path", 14, WARN_FG, "bold", "middle"))
+    o.append(txt(815, 342, "no remaining team can cover", 11.5, INK, anchor="middle"))
+    o.append(txt(815, 364, "raised requirements and goal", 11.5, INK, anchor="middle"))
+    o.append(link(920, 216, 815, 290, muted=True))
+    return svg(W, H, "\n  ".join(o))
+
+
+# ==========================================================================
 if __name__ == "__main__":
     jobs = [("figure_architecture", architecture(), 2360, 1460),
             ("figure_formation", formation(), 2360, 1380),
             ("figure_withdrawal", withdrawal(), 2360, 1200),
-            ("figure_failure_modes", failure_modes(), 2360, 1120)]
+            ("figure_failure_modes", failure_modes(), 2360, 1120),
+            ("figure_task_aware_workflow", task_aware_workflow(), 2360, 940),
+            ("figure_strategy_comparison", strategy_comparison(), 2360, 1220),
+            ("figure_lifecycle_recovery", lifecycle_recovery(), 2360, 940)]
     for name, src, pw, ph in jobs:
         (HERE / f"{name}.svg").write_text(src)
         cairosvg.svg2png(url=str(HERE / f"{name}.svg"),
